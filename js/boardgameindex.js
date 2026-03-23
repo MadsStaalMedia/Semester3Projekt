@@ -40,5 +40,6 @@ const gameList = [
 const gameIndex = document.getElementById("gameIndex");
 
 for (let i in gameList) {
+    gameIndex.innerHTML += `<div class="gameEntry"> <p>Navn: </p> </div>`
     
 }
