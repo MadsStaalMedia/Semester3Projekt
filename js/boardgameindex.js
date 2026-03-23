@@ -35,4 +35,10 @@ const gameList = [
         complex: "mellem",
         copies: "4"
     }
-]
+];
+
+const gameIndex = document.getElementById("gameIndex");
+
+for (let i in gameList) {
+    
+}
