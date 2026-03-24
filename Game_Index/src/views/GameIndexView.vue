@@ -2,6 +2,7 @@
 
 const gameList = [
     {
+        img: "./img/catan.jpg",
         name: "Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
@@ -14,6 +15,7 @@ const gameList = [
         copies: "4"
     },
     {
+        img: "./img/catan.jpg",
         name: "Spil 2",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
@@ -26,6 +28,7 @@ const gameList = [
         copies: "4"
     },
     {
+        img: "./img/catan.jpg",
         name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
@@ -52,12 +55,16 @@ const gameList = [
 
       <div v-for="game in gameList">
 
-        <h4>{{ game.name }}</h4>
+        <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
+        <h3>{{ game.name }}</h3>
         <p>{{ game.desc }}</p>
         <ul>
           <li>Udgiver: {{ game.publisher }}</li>
           <li>Udgivelsesdato: {{ game.date }}</li>
           <li>Antal spillere: {{ game.players }}</li>
+          <li>Anbefalet alder: {{ game.age }}</li>
+          <li>Kompleksitet: {{ game.complex }}</li>
+          <li>Genre: {{ game.genre }}</li>
         </ul>
 
       </div>
