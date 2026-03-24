@@ -2,7 +2,7 @@
 
 const gameList = [
     {
-        name: "spil 1",
+        name: "Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -14,7 +14,7 @@ const gameList = [
         copies: "4"
     },
     {
-        name: "spil 2",
+        name: "Spil 2",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -26,7 +26,7 @@ const gameList = [
         copies: "4"
     },
     {
-        name: "spil 3",
+        name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
