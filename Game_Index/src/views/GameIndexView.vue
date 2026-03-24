@@ -58,6 +58,7 @@ const gameList = [
           <li>Udgiver: {{ game.publisher }}</li>
           <li>Udgivelsesdato: {{ game.date }}</li>
           <li>Antal spillere: {{ game.players }}</li>
+          
         </ul>
 
       </div>
