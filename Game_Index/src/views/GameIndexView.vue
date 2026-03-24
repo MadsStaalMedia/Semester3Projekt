@@ -2,7 +2,7 @@
 
 const gameList = [
     {
-        img: "./img/catan.jpg",
+        img: "@/views/img/catan.jpg",
         name: "Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
@@ -60,6 +60,7 @@ console.table(gameList);
       <div v-for="game in gameList">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
+        <img src="/img/catan.jpg" />
         <h3>{{ game.name }}</h3>
         <p>{{ game.desc }}</p>
         <ul>
