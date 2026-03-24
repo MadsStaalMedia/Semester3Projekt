@@ -42,7 +42,28 @@ const gameList = [
 </script>
 
 <template>
-  <div class="gameindex">
-    <h1>This is a game index page</h1>
-  </div>
+  <main>
+
+    <div class="gameindex">
+      <h1>This is a game index page</h1>
+    </div>
+
+    <div>
+
+      <div v-for="game in gameList">
+
+        <h4>{{ game.name }}</h4>
+        <p>{{ game.desc }}</p>
+        <ul>
+          <li>Udgiver: {{ game.publisher }}</li>
+          <li>Udgivelsesdato: {{ game.date }}</li>
+          <li>Antal spillere: {{ game.players }}</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </main>
+
 </template>
