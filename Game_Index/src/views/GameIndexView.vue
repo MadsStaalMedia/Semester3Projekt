@@ -1,7 +1,5 @@
 <script setup>
 
-import GameSort from '@/components/GameSort.vue';
-
 const gameList = [
     {
         img: "/img/catan.jpg",
@@ -58,6 +56,12 @@ console.table(gameList);
     <GameSort />
 
     <div>
+
+      <select>
+        <option>Alfabetisk</option>
+        <option>Udgivelsesdato</option>
+        <option>Tilføjelsesdato</option>
+      </select>
 
       <div v-for="game in gameList">
 
