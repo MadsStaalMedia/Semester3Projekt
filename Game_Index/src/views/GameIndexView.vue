@@ -1,9 +1,11 @@
 <script setup>
 
+import GameSort from '@/components/GameSort.vue';
+
 const gameList = [
     {
         img: "/img/catan.jpg",
-        name: "Spil 1",
+        name: "B Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -16,7 +18,7 @@ const gameList = [
     },
     {
         img: "/img/catan.jpg",
-        name: "Spil 2",
+        name: "A Spil 2",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -53,14 +55,13 @@ console.table(gameList);
       <h1>This is a game index page</h1>
     </div>
 
-    <Games />
+    <GameSort />
 
     <div>
 
       <div v-for="game in gameList">
 
-        <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
-        <img :src="game.img" />
+        <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
         <p>{{ game.desc }}</p>
         <ul>
