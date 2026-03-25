@@ -44,6 +44,27 @@ const gameList = [
 
 console.table(gameList);
 
+const sortAlphabet = (arr) => {
+      return arr.sort((a, b) => {
+        if (a.name > b.name) return 1;
+        else return -1;
+      });
+    };
+
+const sortRelease = (arr) => {
+      return arr.sort((a, b) => {
+        if (a.date > b.date) return 1;
+        else return -1;
+      });
+    };
+
+const sortAdded = (arr) => {
+      return arr.sort((a, b) => {
+        if (a.added > b.added) return 1;
+        else return -1;
+      });
+    };
+
 </script>
 
 <template>
@@ -53,8 +74,6 @@ console.table(gameList);
       <h1>This is a game index page</h1>
     </div>
 
-    <GameSort />
-
     <div>
 
       <select>
@@ -63,7 +82,7 @@ console.table(gameList);
         <option>Tilføjelsesdato</option>
       </select>
 
-      <div v-for="game in gameList">
+      <div v-for="game in sortAlphabet(gameList)">
 
         <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
