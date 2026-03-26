@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 const gameList = ref ([
     {
-        img: "@/views/img/catan.jpg",
+        img: "/img/monopoly_pokemon.webp",
         name: "Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
@@ -16,7 +16,7 @@ const gameList = ref ([
         copies: "4",
     },
     {
-        img: "./img/catan.jpg",
+        img: "/img/azul.webp",
         name: "Spil 2",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
@@ -29,7 +29,7 @@ const gameList = ref ([
         copies: "4",
     },
     {
-        img: "./img/catan.jpg",
+        img: "/img/rival_restaurants.webp",
         name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
@@ -70,14 +70,14 @@ console.table(gameList);
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img class="game_img" src="/img/catan.jpg" />
+          <img class="game_img" :src="game.img" />
           <h3 class="game_title">{{ game.name }}</h3>
           <p class="game_desc">{{ game.desc }}</p>
         </div>
 
         <transition name="accordion">
           <div v-if="activeGame === game" class="game_info">
-            <ul>
+            <ul class="game_info-text">
               <li>Udgiver: {{ game.publisher }}</li>
               <li>Udgivelsesdato: {{ game.date }}</li>
               <li>Antal spillere: {{ game.players }}</li>
@@ -109,24 +109,25 @@ console.table(gameList);
   display: flex;
   flex-direction: column;
   padding: 8px;
+  margin: 0 8px;
   border-radius: 15px;
   transition: all 0.4s;
 }
 
 .game:hover {
-  /*box-shadow: 0px 0px 15px 2px #b4b4b4;*/
   scale: 1.05;
-  /*background-color: rgb(75, 75, 75);*/
   cursor: pointer;
 }
 
-/*.game_imgAndTitle {
-
-}*/
 .game_img {
   width: 100%;
   border-radius: 5%;
   margin: 0px 0px 8px 0;
+  transition: all 0.4s;
+}
+
+.game_img:hover {
+  box-shadow: 0px 0px 15px 4px #0e0e0e;
 }
 
 .game_title {
@@ -139,6 +140,13 @@ console.table(gameList);
 
 .game_info {
   overflow: hidden;
+}
+
+.game_info-text {
+  font-size: 0.6rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 @media (min-width: 1024px) {
