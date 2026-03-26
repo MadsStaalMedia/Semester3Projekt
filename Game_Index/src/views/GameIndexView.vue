@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue';
 
-
 const gameList = [
     {
         img: "/img/catan.jpg",
@@ -66,8 +65,6 @@ const sortAdded = (arr) => {
         else return -1;
       });
     };
-
-    
     
 
 </script>
@@ -87,7 +84,7 @@ const sortAdded = (arr) => {
         <option>Tilføjelsesdato</option>
       </select>
 
-      <div v-for="game in sortAlphabet(gameList)" :key="game.name">
+      <div v-for="game in gameList" :key="game.name">
 
         <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
