@@ -66,6 +66,11 @@ const sortAdded = (arr) => {
       });
     };
     
+let sortingMethod = sortAlphabet(gameList);
+
+function changeSort(sortType) {
+  sortingMethod = sortType;
+}
 
 </script>
 
@@ -78,13 +83,13 @@ const sortAdded = (arr) => {
 
     <div>
 
-      <select>
-        <option>Alfabetisk</option>
-        <option>Udgivelsesdato</option>
-        <option>Tilføjelsesdato</option>
+      <select @change="changeSort($event)">
+        <option value="sortAlphabet(gameList)">Alfabetisk</option>
+        <option value="sortRelease(gameList)">Udgivelsesdato</option>
+        <option value="sortAdded(gameList)">Tilføjelsesdato</option>
       </select>
 
-      <div v-for="game in gameList" :key="game.name">
+      <div v-for="game in sortingMethod" :key="game.name">
 
         <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
