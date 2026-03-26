@@ -69,11 +69,6 @@ const sortAdded = (arr) => {
 let sortingMethod = sortAlphabet(gameList);
 let reSort = 0;
 
-function changeSort(sortType) {
-  sortingMethod = sortType;
-  
-}
-
 </script>
 
 <template>
