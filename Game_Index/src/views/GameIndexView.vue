@@ -1,5 +1,6 @@
 <script setup>
-import { reactive } from 'vue';
+import { computed, ref } from 'vue';
+
 
 const gameList = [
     {
@@ -41,9 +42,13 @@ const gameList = [
         complex: "mellem",
         copies: "4"
     }
-];
+]
 
-console.table(gameList);
+function gameSort() {
+  return gameList.name.sort((a, b) => a.name - b.name );
+}
+
+console.info(gameList);
 
 </script>
 
@@ -56,10 +61,10 @@ console.table(gameList);
 
     <div>
 
-      <select>
-        <option value="a">Alfabetisk</option>
-        <option value="b">Udgivelsesdato</option>
-        <option value="c">Tilføjelsesdato</option>
+      <select @change="gameSort()">
+        <option value="name">Alfabetisk</option>
+        <option value="date">Udgivelsesdato</option>
+        <option value="added">Tilføjelsesdato</option>
       </select>
 
       <div v-for="game in gameList">
