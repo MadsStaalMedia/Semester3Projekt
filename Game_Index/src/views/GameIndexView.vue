@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { reactive } from 'vue';
 
 const gameList = [
     {
@@ -45,35 +45,6 @@ const gameList = [
 
 console.table(gameList);
 
-const sortAlphabet = (arr) => {
-      return arr.sort((a, b) => {
-        if (a.name > b.name) return 1;
-        else return -1;
-      });
-    };
-
-const sortRelease = (arr) => {
-      return arr.sort((a, b) => {
-        if (a.date > b.date) return 1;
-        else return -1;
-      });
-    };
-
-const sortAdded = (arr) => {
-      return arr.sort((a, b) => {
-        if (a.added > b.added) return 1;
-        else return -1;
-      });
-    };
-    
-let sortingMethod = sortAlphabet(gameList);
-let reSort = 0;
-
-function changeSort(sortType) {
-  sortingMethod = sortType;
-  reSort += 1;
-}
-
 </script>
 
 <template>
@@ -85,13 +56,13 @@ function changeSort(sortType) {
 
     <div>
 
-      <select @change="changeSort($event)">
-        <option value="sortAlphabet(gameList)">Alfabetisk</option>
-        <option value="sortRelease(gameList)">Udgivelsesdato</option>
-        <option value="sortAdded(gameList)">Tilføjelsesdato</option>
+      <select>
+        <option value="a">Alfabetisk</option>
+        <option value="b">Udgivelsesdato</option>
+        <option value="c">Tilføjelsesdato</option>
       </select>
 
-      <div v-for="game in sortingMethod" :key="reSort.valueOf">
+      <div v-for="game in gameList">
 
         <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
