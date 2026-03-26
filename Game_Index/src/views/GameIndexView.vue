@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+
 
 const gameList = [
     {
@@ -6,8 +8,8 @@ const gameList = [
         name: "B Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: "3-5-1955",
+        added: "7-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -20,7 +22,7 @@ const gameList = [
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
-        added: "1-1-2026",
+        added: "3-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -32,7 +34,7 @@ const gameList = [
         name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
+        date: "2-5-1955",
         added: "1-1-2026",
         genre: "spillespil",
         players: "2-4",
@@ -65,6 +67,9 @@ const sortAdded = (arr) => {
       });
     };
 
+    
+    
+
 </script>
 
 <template>
@@ -82,7 +87,7 @@ const sortAdded = (arr) => {
         <option>Tilføjelsesdato</option>
       </select>
 
-      <div v-for="game in sortAlphabet(gameList)">
+      <div v-for="game in sortAlphabet(gameList)" :key="game.name">
 
         <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
