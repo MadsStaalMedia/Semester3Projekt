@@ -71,7 +71,6 @@ let reSort = 0;
 
 function changeSort(sortType) {
   sortingMethod = sortType;
-  reSort += 1;
 }
 
 </script>
@@ -91,7 +90,7 @@ function changeSort(sortType) {
         <option value="sortAdded(gameList)">Tilføjelsesdato</option>
       </select>
 
-      <div v-for="game in sortingMethod" :key="reSort.valueOf">
+      <div v-for="game in sortingMethod">
 
         <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
