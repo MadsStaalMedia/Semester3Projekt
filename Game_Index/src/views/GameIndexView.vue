@@ -1,7 +1,7 @@
 <script setup>
+import { ref } from 'vue';
 
-
-const gameList = [
+const gameList = ref([
     {
         img: "/img/catan.jpg",
         name: "B Spil 1",
@@ -41,7 +41,7 @@ const gameList = [
         complex: "mellem",
         copies: "4"
     }
-];
+]);
 
 console.table(gameList);
 
@@ -65,8 +65,6 @@ const sortAdded = (arr) => {
         else return -1;
       });
     };
-    
-let sortingMethod = sortAlphabet(gameList);
 
 function changeSort(sortType) {
   sortingMethod = sortType;
@@ -83,13 +81,13 @@ function changeSort(sortType) {
 
     <div>
 
-      <select @change="changeSort($)">
+      <select @change="changeSort($event)">
         <option value="sortAlphabet(gameList)">Alfabetisk</option>
         <option value="sortRelease(gameList)">Udgivelsesdato</option>
         <option value="sortAdded(gameList)">Tilføjelsesdato</option>
       </select>
 
-      <div v-for="game in sortingMethod" :key="sortingMethod.value">
+      <div v-for="game in gameList" :key="gameList.name">
 
         <img :src="game.img"/>
         <h3>{{ game.name }}</h3>
