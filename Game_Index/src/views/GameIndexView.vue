@@ -77,10 +77,10 @@ const sortAdded = (arr) => {
 
     <div>
 
-      <select>
-        <option @click="sortAlphabet(gameList)">Alfabetisk</option>
-        <option @click="sortRelease(gameList)">Udgivelsesdato</option>
-        <option @click="sortAdded(gameList)">Tilføjelsesdato</option>
+      <select :value="1">
+        <option @click="sortAlphabet(gameList)" :value="1">Alfabetisk</option>
+        <option @click="sortRelease(gameList)" :value="2">Udgivelsesdato</option>
+        <option @click="sortAdded(gameList)" :value="3">Tilføjelsesdato</option>
       </select>
 
       <div v-for="game in gameList" :key="gameList.name">
