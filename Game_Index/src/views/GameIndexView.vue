@@ -45,26 +45,28 @@ const gameList = ref([
 
 console.table(gameList);
 
-const sortAlphabet = (arr) => {
-      return arr.sort((a, b) => {
-        if (a.name > b.name) return 1;
-        else return -1;
-      });
-    };
+  function sortAlphabet(arr) {
+    return arr.sort((a, b) => {
+      if (a.name > b.name) return 1;
+      else return -1;
+    });
+  };
 
-const sortRelease = (arr) => {
-      return arr.sort((a, b) => {
-        if (a.date > b.date) return 1;
-        else return -1;
-      });
-    };
+  function sortRelease(arr) {
+    return arr.sort((a, b) => {
+      if (a.date > b.date) return 1;
+      else return -1;
+    });
+  };
 
-const sortAdded = (arr) => {
-      return arr.sort((a, b) => {
-        if (a.added > b.added) return 1;
-        else return -1;
-      });
-    };
+  function sortAdded(arr) {
+    return arr.sort((a, b) => {
+      if (a.added > b.added) return 1;
+      else return -1;
+    });
+  };
+
+  sortAlphabet(gameList);
 
 </script>
 
