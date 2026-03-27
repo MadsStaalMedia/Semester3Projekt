@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const gameList = ref([
     {
@@ -65,8 +65,6 @@ console.table(gameList);
       else return -1;
     });
   };
-
-  sortAlphabet(gameList);
 
 </script>
 
