@@ -101,7 +101,7 @@ function toggleGameInfo(game) {
 }
 
 function changePage(number) {
-  displayedGames.value = gameList.value.filter((game, index) => index < number * 3).filter((game, index) => index > number - 1);
+  displayedGames.value = gameList.value.filter((game, index) => index < number * 3 && index > number * 3 - 4);
   console.log(number);
 }
 
