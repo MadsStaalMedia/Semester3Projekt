@@ -98,6 +98,10 @@ const displayedGames = computed(() => {
   return gameList.value.filter((game, index) => index < gamePage)
 })
 
+const pageButtons = computed(() => {
+  return gameList.value.length / 3
+})
+
 </script>
 
 <template>
@@ -131,6 +135,10 @@ const displayedGames = computed(() => {
           </div>
         </transition>
 
+      </div>
+
+      <div>
+        <button v-for="number in pageButtons">{{ number }}</button>
       </div>
 
     </div>
