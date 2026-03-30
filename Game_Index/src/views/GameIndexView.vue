@@ -86,9 +86,9 @@ const activeGame = ref(null);
 
 const gamePage = 1;
 
-const displayedGames = computed(() => {
+const displayedGames = ref(computed(() => {
   return gameList.value.filter((game, index) => index < gamePage * 3).filter((game, index) => index > gamePage * 3 - 4)
-});
+}));
 
 const pageButtons = computed(() => {
   return gameList.value.length / 3
@@ -100,10 +100,6 @@ function toggleGameInfo(game) {
   } else {
     activeGame.value = game; 
   }
-}
-
-function changePage(number) {
-  gamePage = number;
 }
 
 </script>
@@ -142,7 +138,7 @@ function changePage(number) {
       </div>
 
       <div v-for="number in pageButtons">
-        <button @click="changePage(number)">
+        <button @click="gamePage = number.value">
           {{ number }}
         </button>
       </div>
