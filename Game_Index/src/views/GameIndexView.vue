@@ -92,7 +92,7 @@ function toggleGameInfo(game) {
   }
 }
 
-const currentPage = 3;
+const gamePage = 3;
 
 const displayedGames = computed(() => {
   return gameList.value.filter((game, index) => index < gamePage)
