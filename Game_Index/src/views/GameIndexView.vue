@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, reactive } from 'vue';
+import { computed, ref } from 'vue';
 
 const gameList = ref ([
     {
@@ -86,11 +86,9 @@ const activeGame = ref(null);
 
 const gamePage = 3;
 
-let currentPage = reactive(gamePage);
-
-const displayedGames = computed(() => {
-  return gameList.value.filter((game, index) => index < currentPage)
-});
+const displayedGames = ref(computed(() => {
+  return gameList.value.filter((game, index) => index < gamePage)
+}));
 
 const pageButtons = computed(() => {
   return gameList.value.length / 3
@@ -105,7 +103,7 @@ function toggleGameInfo(game) {
 }
 
 function changePage(number) {
-  currentPage = reactive(number * 3);
+  gamePage = number * 3;
   console.log(currentPage);
 }
 
