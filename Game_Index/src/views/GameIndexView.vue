@@ -87,7 +87,7 @@ const activeGame = ref(null);
 const gamePage = 1;
 
 const displayedGames = computed(() => {
-  return gameList.value.filter((game, index) => index < gamePage * 3)
+  return gameList.value.filter((game, index) => index < gamePage * 3).filter((game, index) => index > gamePage * 3 - 4)
 });
 
 const pageButtons = computed(() => {
