@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const gameList = ref ([
     {
@@ -40,6 +40,45 @@ const gameList = ref ([
         age: "+99",
         complex: "mellem",
         copies: "4",
+    },
+    {
+        img: "/img/rival_restaurants.webp",
+        name: "Spil 3",
+        desc: "et spil hvor du spiller",
+        publisher: "Spil Firma",
+        date: "5-5-1955",
+        added: "1-1-2026",
+        genre: "spillespil",
+        players: "2-4",
+        age: "+99",
+        complex: "mellem",
+        copies: "4",
+    },
+    {
+        img: "/img/rival_restaurants.webp",
+        name: "Spil 3",
+        desc: "et spil hvor du spiller",
+        publisher: "Spil Firma",
+        date: "5-5-1955",
+        added: "1-1-2026",
+        genre: "spillespil",
+        players: "2-4",
+        age: "+99",
+        complex: "mellem",
+        copies: "4",
+    },
+    {
+        img: "/img/rival_restaurants.webp",
+        name: "Spil 3",
+        desc: "et spil hvor du spiller",
+        publisher: "Spil Firma",
+        date: "5-5-1955",
+        added: "1-1-2026",
+        genre: "spillespil",
+        players: "2-4",
+        age: "+99",
+        complex: "mellem",
+        copies: "4",
     }
 ]);
 
@@ -53,7 +92,11 @@ function toggleGameInfo(game) {
   }
 }
 
-console.table(gameList);
+const gamePage = 3;
+
+const displayedGames = computed(() => {
+  return gameList.value.filter((game, index) => index < gamePage)
+})
 
 </script>
 
@@ -66,7 +109,7 @@ console.table(gameList);
 
     <div id="index_wrapper">
 
-      <div class="game" v-for="game in gameList" :key="game.name">
+      <div class="game" v-for="game in displayedGames" :key="game.name">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
