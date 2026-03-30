@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-const gameList = ref ([
+const gameList = ref([
     {
         img: "/img/monopoly_pokemon.webp",
         name: "Spil 1",
@@ -86,9 +86,9 @@ const activeGame = ref(null);
 
 const gamePage = 1;
 
-const displayedGames = ref(computed(() => {
+const displayedGames = computed(() => {
   return gameList.value.filter((game, index) => index < gamePage * 3).filter((game, index) => index > gamePage * 3 - 4)
-}));
+});
 
 const pageButtons = computed(() => {
   return gameList.value.length / 3
@@ -138,7 +138,7 @@ function toggleGameInfo(game) {
       </div>
 
       <div v-for="number in pageButtons">
-        <button @click="gamePage = number.value">
+        <button @click="gamePage = number">
           {{ number }}
         </button>
       </div>
