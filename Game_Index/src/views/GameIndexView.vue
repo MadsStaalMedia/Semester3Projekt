@@ -84,11 +84,11 @@ const gameList = ref ([
 
 const activeGame = ref(null);
 
-const gamePage = 3;
+const gamePage = 1;
 
-const displayedGames = ref(computed(() => {
-  return gameList.value.filter((game, index) => index < gamePage)
-}));
+const displayedGames = computed(() => {
+  return gameList.value.filter((game, index) => index < gamePage * 3)
+});
 
 const pageButtons = computed(() => {
   return gameList.value.length / 3
@@ -103,10 +103,8 @@ function toggleGameInfo(game) {
 }
 
 function changePage(number) {
-  gamePage = number * 3;
-  console.log(currentPage);
+  gamePage = number;
 }
-
 
 </script>
 
