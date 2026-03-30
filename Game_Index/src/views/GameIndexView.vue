@@ -138,7 +138,7 @@ function toggleGameInfo(game) {
       </div>
 
       <div v-for="number in pageButtons">
-        <button @click="swapPage(number)">{{ number }}</button>
+        <button @click="">{{ number }}</button>
       </div>
 
     </div>
