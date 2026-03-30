@@ -43,7 +43,7 @@ const gameList = ref ([
     },
     {
         img: "/img/rival_restaurants.webp",
-        name: "Spil 3",
+        name: "Spil 4",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -56,7 +56,7 @@ const gameList = ref ([
     },
     {
         img: "/img/rival_restaurants.webp",
-        name: "Spil 3",
+        name: "Spil 5",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -69,7 +69,7 @@ const gameList = ref ([
     },
     {
         img: "/img/rival_restaurants.webp",
-        name: "Spil 3",
+        name: "Spil 6",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -101,6 +101,7 @@ const displayedGames = computed(() => {
 const pageButtons = computed(() => {
   return gameList.value.length / 3
 })
+
 
 </script>
 
