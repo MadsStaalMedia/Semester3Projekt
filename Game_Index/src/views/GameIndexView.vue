@@ -105,12 +105,14 @@ console.table(gameList);
           </div>
         </transition>
 
-      <div v-for="number in pageButtons">
-        <button @click="changePage(number)">
-          {{ number }}
-        </button>
       </div>
 
+    </div>
+
+    <div v-for="number in pageButtons">
+      <button @click="changePage(number)">
+        {{ number }}
+      </button>
     </div>
 
   </main>
