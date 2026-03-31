@@ -62,7 +62,11 @@
         <input name="copies" type="text">
         <br>
 
-        <input name="save" type="submit">
+        <label for="img">Billede</label>
+        <input name="img" type="file" accept="image/*">
+        <br>
+
+        <input type="submit">
     </form>
 
 </template>
