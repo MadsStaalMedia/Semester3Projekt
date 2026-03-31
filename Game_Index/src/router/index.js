@@ -22,6 +22,11 @@ const router = createRouter({
       name: 'gameindex',
       component: () => import('../views/GameIndexView.vue'),
     },
+    {
+      path: '/gamemanager',
+      name: 'gamemanager',
+      component: () => import('../views/GameManager.vue')
+    }
   ],
 })
 
