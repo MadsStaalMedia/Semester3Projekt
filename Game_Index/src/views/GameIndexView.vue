@@ -7,13 +7,13 @@ const gameList = ref([
         name: "Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "3-5-1955",
-        added: "7-1-2026",
+        date: "5-5-1955",
+        added: "1-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4"
+        copies: "4",
     },
     {
         img: "/img/azul.webp",
@@ -21,29 +21,89 @@ const gameList = ref([
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
-        added: "3-1-2026",
+        added: "1-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4"
+        copies: "4",
     },
     {
         img: "/img/rival_restaurants.webp",
         name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "2-5-1955",
+        date: "5-5-1955",
         added: "1-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4"
+        copies: "4",
+    },
+    {
+        img: "/img/rival_restaurants.webp",
+        name: "Spil 4",
+        desc: "et spil hvor du spiller",
+        publisher: "Spil Firma",
+        date: "5-5-1955",
+        added: "1-1-2026",
+        genre: "spillespil",
+        players: "2-4",
+        age: "+99",
+        complex: "mellem",
+        copies: "4",
+    },
+    {
+        img: "/img/rival_restaurants.webp",
+        name: "Spil 5",
+        desc: "et spil hvor du spiller",
+        publisher: "Spil Firma",
+        date: "5-5-1955",
+        added: "1-1-2026",
+        genre: "spillespil",
+        players: "2-4",
+        age: "+99",
+        complex: "mellem",
+        copies: "4",
+    },
+    {
+        img: "/img/rival_restaurants.webp",
+        name: "Spil 6",
+        desc: "et spil hvor du spiller",
+        publisher: "Spil Firma",
+        date: "5-5-1955",
+        added: "1-1-2026",
+        genre: "spillespil",
+        players: "2-4",
+        age: "+99",
+        complex: "mellem",
+        copies: "4",
     }
 ]);
 
-console.table(gameList);
+const activeGame = ref(null);
+
+const gamePage = ref(1);
+
+let displayedGames = ref(gameList.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
+
+const pageButtons = computed(() => {
+  return gameList.value.length / 3
+});
+
+function toggleGameInfo(game) {
+  if (activeGame.value === game) {
+    activeGame.value = null; 
+  } else {
+    activeGame.value = game; 
+  }
+}
+
+function changePage(number) {
+  displayedGames.value = gameList.value.filter((game, index) => index < number * 3 && index > number * 3 - 4);
+  console.log(number);
+}
 
   function sortAlphabet(arr) {
     return arr.sort((a, b) => {
