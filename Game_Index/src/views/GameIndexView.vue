@@ -7,13 +7,13 @@ const gameList = ref([
         name: "Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: "3-5-1955",
+        added: "7-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     },
     {
         img: "/img/azul.webp",
@@ -21,100 +21,67 @@ const gameList = ref([
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
-        added: "1-1-2026",
+        added: "3-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     },
     {
         img: "/img/rival_restaurants.webp",
         name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
+        date: "2-5-1955",
         added: "1-1-2026",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/rival_restaurants.webp",
-        name: "Spil 4",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/rival_restaurants.webp",
-        name: "Spil 5",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/rival_restaurants.webp",
-        name: "Spil 6",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
+        copies: "4"
     }
 ]);
 
-const activeGame = ref(null);
+console.table(gameList);
 
-const gamePage = ref(1);
+  function sortAlphabet(arr) {
+    return arr.sort((a, b) => {
+      if (a.name > b.name) return 1;
+      else return -1;
+    });
+  };
 
-let displayedGames = ref(gameList.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
+  function sortRelease(arr) {
+    return arr.sort((a, b) => {
+      if (a.date > b.date) return 1;
+      else return -1;
+    });
+  };
 
-const pageButtons = computed(() => {
-  return gameList.value.length / 3
-});
-
-function toggleGameInfo(game) {
-  if (activeGame.value === game) {
-    activeGame.value = null; 
-  } else {
-    activeGame.value = game; 
-  }
-}
-
-function changePage(number) {
-  displayedGames.value = gameList.value.filter((game, index) => index < number * 3 && index > number * 3 - 4);
-  console.log(number);
-}
+  function sortAdded(arr) {
+    return arr.sort((a, b) => {
+      if (a.added > b.added) return 1;
+      else return -1;
+    });
+  };
 
 </script>
 
 <template>
   <main>
 
-    <div>
+    <div class="gameindex">
       <h1>This is a game index page</h1>
     </div>
 
-    <div id="index_wrapper">
+    <div>
+
+      <select :value="1">
+        <option @click="sortAlphabet(gameList)" :value="1">Alfabetisk</option>
+        <option @click="sortRelease(gameList)" :value="2">Udgivelsesdato</option>
+        <option @click="sortAdded(gameList)" :value="3">Tilføjelsesdato</option>
+      </select>
 
       <div class="game" v-for="game in displayedGames" :key="game.name">
 
@@ -138,8 +105,6 @@ function changePage(number) {
           </div>
         </transition>
 
-      </div>
-
       <div v-for="number in pageButtons">
         <button @click="changePage(number)">
           {{ number }}
@@ -151,95 +116,3 @@ function changePage(number) {
   </main>
 
 </template>
-
-<style scoped>
-
-#index_wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 8px;
-}
-
-.game {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  margin: 0 8px;
-  border-radius: 15px;
-  transition: all 0.4s;
-}
-
-.game:hover {
-  scale: 1.05;
-  cursor: pointer;
-}
-
-.game_img {
-  width: 100%;
-  border-radius: 5%;
-  margin: 0px 0px 8px 0;
-  transition: all 0.4s;
-}
-
-.game_img:hover {
-  box-shadow: 0px 0px 15px 4px #0e0e0e;
-}
-
-.game_title {
-  font-size: 1rem;
-}
-
-.game_desc {
-  font-size: 0.7rem;
-}
-
-.game_info {
-  overflow: hidden;
-}
-
-.game_info-text {
-  font-size: 0.6rem;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-@media (min-width: 1024px) {
-  #index_wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 8px;
-}
-
-.game {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-}
-
-.accordion-enter-active,
-.accordion-leave-active {
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.accordion-enter-from,
-.accordion-leave-to {
-  max-height: 0;
-  opacity: 0;
-}
-
-.accordion-enter-to,
-.accordion-leave-from {
-  max-height: 1000px;
-  opacity: 1;
-}
-
-.game_info {
-  overflow: hidden;
-}
-}
-
-</style>
