@@ -39,7 +39,7 @@
         <br>
 
         <label for="date">Udgivelsesdato </label>
-        <input name="date" type="text">
+        <input name="date" type="date">
         <br>
 
         <label for="genre">Spilgenre </label>
