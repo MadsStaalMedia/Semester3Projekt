@@ -13,7 +13,7 @@ const gameList = ref([
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     },
     {
         img: "/img/azul.webp",
@@ -26,7 +26,7 @@ const gameList = ref([
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     },
     {
         img: "/img/rival_restaurants.webp",
@@ -39,7 +39,7 @@ const gameList = ref([
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     },
     {
         img: "/img/rival_restaurants.webp",
@@ -52,7 +52,7 @@ const gameList = ref([
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     },
     {
         img: "/img/rival_restaurants.webp",
@@ -65,7 +65,7 @@ const gameList = ref([
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     },
     {
         img: "/img/rival_restaurants.webp",
@@ -78,7 +78,7 @@ const gameList = ref([
         players: "2-4",
         age: "+99",
         complex: "mellem",
-        copies: "4",
+        copies: "4"
     }
 ]);
 
