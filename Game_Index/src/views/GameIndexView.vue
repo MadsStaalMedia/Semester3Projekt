@@ -125,7 +125,7 @@
 
   function searchGames() {
     console.log(search.value);
-    searchGames.value = sortedGames.value.filter((game, name) => name.toLowerCase() == search.toLowerCase());
+    searchedGames.value = sortedGames.value.filter((game, name) => name.toString().toLowerCase().includes(search.value.toLowerCase()));
   };
 
 </script>
@@ -139,7 +139,8 @@
 
     <div>
 
-      <input type="search" name="search" v-model="search" placeholder="Søg" @keyup.enter="searchGames()">
+      <input type="search" name="search" v-model="search" placeholder="Søg">
+      <button @click="searchGames">Søg</button>
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
