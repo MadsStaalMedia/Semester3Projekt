@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, ref } from 'vue';
+  import { computed, ref, watch } from 'vue';
 
   const gameList = ref([
     {
@@ -88,7 +88,9 @@
 
   let sortedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
 
-  let displayedGames = ref(sortedGames.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
+  let searchedGames = ref(sortedGames.value);
+
+  let displayedGames = ref(searchedGames.value.filter((index) => index < gamePage.value * 3).filter((index) => index > gamePage.value * 3 - 4));
 
   const pageButtons = computed(() => {
     return gameList.value.length / 3
@@ -100,12 +102,12 @@
     } else {
       activeGame.value = game; 
     }
-  }
+  };
 
   function changePage(number) {
     displayedGames.value = gameList.value.filter((game, index) => index < number * 3 && index > number * 3 - 4);
     console.log(number);
-  }
+  };
 
   function sortAlphabet() {
     sortedGames = displayedGames.value.sort((a, b) => a.name > b.name);
@@ -119,6 +121,11 @@
     sortedGames = displayedGames.value.sort((a, b) => a.added > b.added);
   };
 
+  function searchGame() {
+    searchedGames = sortedGames.value.filter((name) =>
+      name.toLowerCase().includes(search.value.toLowerCase())
+  )};
+
 </script>
 
 <template>
@@ -129,6 +136,9 @@
     </div>
 
     <div>
+
+      <input type="text" name="search" v-model="search">
+      <button @click="searchGame()">Søg</button>
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
