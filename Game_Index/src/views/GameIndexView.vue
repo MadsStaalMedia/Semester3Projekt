@@ -86,6 +86,8 @@
 
   const gamePage = ref(1);
 
+  let search = ref("")
+
   let sortedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
 
   let searchedGames = ref(sortedGames.value)
@@ -122,7 +124,8 @@
   };
 
   function searchGames() {
-    searchGames.value = sortedGames.value.filter((game, name) => name.toLowerCase() == input.toLowerCase());
+    console.log(search.value);
+    searchGames.value = sortedGames.value.filter((game, name) => name.toLowerCase() == search.toLowerCase());
   };
 
 </script>
@@ -136,8 +139,7 @@
 
     <div>
 
-      <input type="text" name="search" v-model="input">
-      <button @click="searchGames()">Søg</button>
+      <input type="search" name="search" v-model="search" placeholder="Søg" @keyup.enter="searchGames()">
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
