@@ -1,10 +1,10 @@
 <script setup>
-import { computed, ref } from 'vue';
+  import { computed, ref } from 'vue';
 
-const gameList = ref([
+  const gameList = ref([
     {
         img: "/img/monopoly_pokemon.webp",
-        name: "Spil 1",
+        name: "B Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -17,7 +17,7 @@ const gameList = ref([
     },
     {
         img: "/img/azul.webp",
-        name: "Spil 2",
+        name: "A Spil 2",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
         date: "5-5-1955",
@@ -80,30 +80,30 @@ const gameList = ref([
         complex: "mellem",
         copies: "4",
     }
-]);
+  ]);
 
-const activeGame = ref(null);
+  const activeGame = ref(null);
 
-const gamePage = ref(1);
+  const gamePage = ref(1);
 
-let displayedGames = ref(gameList.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
+  let displayedGames = ref(gameList.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
 
-const pageButtons = computed(() => {
-  return gameList.value.length / 3
-});
+  const pageButtons = computed(() => {
+    return gameList.value.length / 3
+  });
 
-function toggleGameInfo(game) {
-  if (activeGame.value === game) {
-    activeGame.value = null; 
-  } else {
-    activeGame.value = game; 
+  function toggleGameInfo(game) {
+    if (activeGame.value === game) {
+      activeGame.value = null; 
+    } else {
+      activeGame.value = game; 
+    }
   }
-}
 
-function changePage(number) {
-  displayedGames.value = gameList.value.filter((game, index) => index < number * 3 && index > number * 3 - 4);
-  console.log(number);
-}
+  function changePage(number) {
+    displayedGames.value = gameList.value.filter((game, index) => index < number * 3 && index > number * 3 - 4);
+    console.log(number);
+  }
 
   function sortAlphabet(arr) {
     return arr.sort((a, b) => {
