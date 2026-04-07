@@ -7,8 +7,8 @@
         name: "B Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: new Date("1952-5-3"),
+        added: new Date("2026-1-3"),
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -20,8 +20,8 @@
         name: "A Spil 2",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: new Date("1955-5-3"),
+        added: new Date("2022-1-1"),
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -33,8 +33,8 @@
         name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: new Date("1955-5-2"),
+        added: new Date("2026-5-1"),
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -46,8 +46,8 @@
         name: "Spil 4",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: new Date("1955-5-3"),
+        added: new Date("2026-6-1"),
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -56,11 +56,11 @@
     },
     {
         img: "/img/rival_restaurants.webp",
-        name: "Spil 5",
+        name: "A Spil 5",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: new Date("1955-5-1"),
+        added: new Date("2021-1-1"),
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -72,8 +72,8 @@
         name: "Spil 6",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: "5-5-1955",
-        added: "1-1-2026",
+        date: new Date("1955-3-3"),
+        added: new Date("2026-8-1"),
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -86,7 +86,9 @@
 
   const gamePage = ref(1);
 
-  let displayedGames = ref(gameList.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
+  let sortedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
+
+  let displayedGames = ref(sortedGames.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
 
   const pageButtons = computed(() => {
     return gameList.value.length / 3
@@ -105,25 +107,16 @@
     console.log(number);
   }
 
-  function sortAlphabet(arr) {
-    return arr.sort((a, b) => {
-      if (a.name > b.name) return 1;
-      else return -1;
-    });
+  function sortAlphabet() {
+    sortedGames = displayedGames.value.sort((a, b) => a.name > b.name);
   };
 
-  function sortRelease(arr) {
-    return arr.sort((a, b) => {
-      if (a.date > b.date) return 1;
-      else return -1;
-    });
+  function sortRelease() {
+    sortedGames = displayedGames.value.sort((a, b) => a.date > b.date);
   };
 
-  function sortAdded(arr) {
-    return arr.sort((a, b) => {
-      if (a.added > b.added) return 1;
-      else return -1;
-    });
+  function sortAdded() {
+    sortedGames = displayedGames.value.sort((a, b) => a.added > b.added);
   };
 
 </script>
@@ -138,9 +131,9 @@
     <div>
 
       <select :value="1">
-        <option @click="sortAlphabet(displayedGames)" :value="1">Alfabetisk</option>
-        <option @click="sortRelease(displayedGames)" :value="2">Udgivelsesdato</option>
-        <option @click="sortAdded(displayedGames)" :value="3">Tilføjelsesdato</option>
+        <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
+        <option @click="sortRelease()" :value="2">Udgivelsesdato</option>
+        <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
       <div class="game" v-for="game in displayedGames" :key="game.name">
@@ -156,7 +149,7 @@
           <div v-if="activeGame === game" class="game_info">
             <ul class="game_info-text">
               <li>Udgiver: {{ game.publisher }}</li>
-              <li>Udgivelsesdato: {{ game.date }}</li>
+              <li>Udgivelsesdato: {{ game.date.toDateString().split(' ').slice(1).join(' ') }}</li>
               <li>Antal spillere: {{ game.players }}</li>
               <li>Anbefalet alder: {{ game.age }}</li>
               <li>Kompleksitet: {{ game.complex }}</li>
