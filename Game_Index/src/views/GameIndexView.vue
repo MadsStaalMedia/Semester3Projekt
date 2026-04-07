@@ -138,9 +138,9 @@
     <div>
 
       <select :value="1">
-        <option @click="sortAlphabet(gameList)" :value="1">Alfabetisk</option>
-        <option @click="sortRelease(gameList)" :value="2">Udgivelsesdato</option>
-        <option @click="sortAdded(gameList)" :value="3">Tilføjelsesdato</option>
+        <option @click="sortAlphabet(displayedGames)" :value="1">Alfabetisk</option>
+        <option @click="sortRelease(displayedGames)" :value="2">Udgivelsesdato</option>
+        <option @click="sortAdded(displayedGames)" :value="3">Tilføjelsesdato</option>
       </select>
 
       <div class="game" v-for="game in displayedGames" :key="game.name">
