@@ -119,6 +119,10 @@
     sortedGames = displayedGames.value.sort((a, b) => a.added > b.added);
   };
 
+  function searchGames() {
+    
+  }
+
 </script>
 
 <template>
@@ -131,7 +135,7 @@
     <div>
 
       <input type="text" name="search" v-model="input">
-      <button>Søg</button>
+      <button @click="searchGames()">Søg</button>
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
