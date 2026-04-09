@@ -11,7 +11,9 @@
     const age = ref('');
     const complex = ref('');
     const copies = ref('');
-    const img = ref()
+    const img = ref(null);
+
+    
 
     const onSubmit = () => {
         console.log("submitted");
@@ -60,7 +62,7 @@
 
         Antal kopier: <input v-model="copies" /><br>
 
-        Billede: <input type="file" accept="image/jpg, image/webp, image/jpeg" /><br>
+        Billede: <input ref="img" type="file" accept="image/*" /><br>
 
         <button type="submit">Tilføj spil</button>
 
