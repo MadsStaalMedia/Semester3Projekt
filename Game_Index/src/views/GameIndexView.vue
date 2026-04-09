@@ -86,9 +86,9 @@
 
   const gamePage = ref(1);
 
-  let search = ref("")
+  let search = ref('');
 
-  let displayedGames = ref(gameList.value.sort((a, b) => a.name > b.name).filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
+  let displayedGames = ref(gameList.value.sort((a, b) => a.name > b.name).filter((game, name) => game.name.toLowerCase().includes(search.value.toLowerCase())).filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
 
   const pageButtons = computed(() => {
     return gameList.value.length / 3
