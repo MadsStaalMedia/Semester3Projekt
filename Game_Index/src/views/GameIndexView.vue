@@ -90,7 +90,9 @@
 
   let sortedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
 
-  let displayedGames = ref(sortedGames.value.filter((game, index) => index < gamePage.value * 3 && index > gamePage.value * 3 - 4));
+  let searchedGames = ref(sortedGames.value);
+
+  let displayedGames = ref(searchedGames.value.filter((game, index) => index < gamePage.value * 3 && index > gamePage.value * 3 - 4));
 
   const pageButtons = computed(() => {
     return gameList.value.length / 3
@@ -121,6 +123,11 @@
     sortedGames = displayedGames.value.sort((a, b) => a.added > b.added);
   };
 
+  function searchForGames() {
+    searchedGames = ref(sortedGames.value.filter((game, index) => game.name.toLowerCase().includes(search.value.toLowerCase())));
+    console.table(searchedGames.value);
+  }
+
 </script>
 
 <template>
@@ -133,6 +140,7 @@
     <div>
 
       <input type="text" name="search" v-model="search" placeholder="Søg">
+      <button @click="searchForGames()">Søg</button>
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
