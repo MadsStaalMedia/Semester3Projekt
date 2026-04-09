@@ -95,7 +95,7 @@
   let displayedGames = ref(searchedGames.value.filter((game, index) => index < gamePage.value * 3 && index > gamePage.value * 3 - 4));
 
   const pageButtons = computed(() => {
-    return gameList.value.length / 3
+    return displayedGames.value.length / 3
   });
 
   function toggleGameInfo(game) {
@@ -124,7 +124,8 @@
   };
 
   function searchForGames() {
-    searchedGames = ref(sortedGames.value.filter((game, index) => game.name.toLowerCase().includes(search.value.toLowerCase())));
+    let searchTerm = search.value;
+    searchedGames.value = sortedGames.value.filter((game, index) => game.name.toLowerCase().includes(searchTerm.toLowerCase()));
     console.table(searchedGames.value);
   }
 
