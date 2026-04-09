@@ -7,8 +7,8 @@
         name: "B Spil 1",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: new Date("1952-5-3"),
-        added: new Date("2026-1-3"),
+        date: "1952-5-3",
+        added: "2026-1-3",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -20,8 +20,8 @@
         name: "A Spil 2",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: new Date("1955-5-3"),
-        added: new Date("2022-1-1"),
+        date: "1955-5-3",
+        added: "2022-1-1",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -33,8 +33,8 @@
         name: "Spil 3",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: new Date("1955-5-2"),
-        added: new Date("2026-5-1"),
+        date: "1955-5-2",
+        added: "2026-5-1",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -46,8 +46,8 @@
         name: "Spil 4",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: new Date("1955-5-3"),
-        added: new Date("2026-6-1"),
+        date: "1955-5-3",
+        added: "2026-6-1",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -59,8 +59,8 @@
         name: "A Spil 5",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: new Date("1955-5-1"),
-        added: new Date("2021-1-1"),
+        date: "1955-5-1",
+        added: "2021-1-1",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -72,8 +72,8 @@
         name: "Spil 6",
         desc: "et spil hvor du spiller",
         publisher: "Spil Firma",
-        date: new Date("1955-3-3"),
-        added: new Date("2026-8-1"),
+        date: "1955-3-3",
+        added: "2026-8-1",
         genre: "spillespil",
         players: "2-4",
         age: "+99",
@@ -88,9 +88,7 @@
 
   let search = ref("")
 
-  let sortedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
-
-  let displayedGames = ref(sortedGames.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
+  let displayedGames = ref(gameList.value.filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4).sort((a, b) => a.name > b.name));
 
   const pageButtons = computed(() => {
     return gameList.value.length / 3
@@ -158,7 +156,7 @@
           <div v-if="activeGame === game" class="game_info">
             <ul class="game_info-text">
               <li>Udgiver: {{ game.publisher }}</li>
-              <li>Udgivelsesdato: {{ game.date.toDateString().split(' ').slice(1).join(' ') }}</li>
+              <li>Udgivelsesdato: {{ game.date }}</li>
               <li>Antal spillere: {{ game.players }}</li>
               <li>Anbefalet alder: {{ game.age }}</li>
               <li>Kompleksitet: {{ game.complex }}</li>
