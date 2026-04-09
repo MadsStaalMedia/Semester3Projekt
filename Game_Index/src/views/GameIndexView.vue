@@ -86,11 +86,9 @@
 
   const gamePage = ref(1);
 
-  let search = ref('');
+  let search = ref("");
 
   let sortedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
-
-  let searchedGames = ref(sortedGames.value.filter((game) => game.name.toLowerCase().includes(search.value.toLowerCase())))
 
   let displayedGames = ref(sortedGames.value.filter((game, index) => index < gamePage.value * 3 && index > gamePage.value * 3 - 4));
 
@@ -134,7 +132,7 @@
 
     <div>
 
-      <input type="search" name="search" v-model="search" placeholder="Søg">
+      <input type="text" name="search" v-model="search" placeholder="Søg">
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
