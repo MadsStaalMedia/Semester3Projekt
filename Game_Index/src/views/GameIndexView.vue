@@ -90,7 +90,7 @@
 
   let sortedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
 
-  let searchedGames = ref(sortedGames.value);
+  let searchedGames = ref(sortedGames.value.filter((game, index) => game.name.toLowerCase().includes(search.value.toLowerCase())));
 
   let displayedGames = ref(searchedGames.value.filter((game, index) => index < gamePage.value * 3 && index > gamePage.value * 3 - 4));
 
@@ -124,9 +124,10 @@
   };
 
   function searchForGames() {
-    let searchTerm = search.value;
-    searchedGames.value = sortedGames.value.filter((game, index) => game.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    searchedGames.value = sortedGames.value.filter((game, index) => game.name.toLowerCase().includes(search.value.toLowerCase()));
+    console.log(search.value);
     console.table(searchedGames.value);
+    console.table(displayedGames.value);
   }
 
 </script>
@@ -149,7 +150,7 @@
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
-      <div class="game" v-for="game in displayedGames" :key="game.name">
+      <div class="game" v-for="game in searchedGames" :key="game.name">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
