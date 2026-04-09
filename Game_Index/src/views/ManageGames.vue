@@ -60,7 +60,7 @@
 
         Antal kopier: <input v-model="copies" /><br>
 
-        Billede: <input type="file" accept="image/png, image/gif, image/jpeg" /><br>
+        Billede: <input type="file" accept="image/jpg, image/webp, image/jpeg" /><br>
 
         <button type="submit">Tilføj spil</button>
 
