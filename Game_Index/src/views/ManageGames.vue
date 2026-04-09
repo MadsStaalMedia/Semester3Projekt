@@ -1,10 +1,16 @@
 <script setup>
 
+    import { ref } from 'vue';
+
+    const onSubmit = () => {
+        console.log("submitted");
+    };
+
 </script>
 
 <template>
 
-    <form>
+    <form @submit.prevent="onSubmit">
 
         Titel: <input /><br>
 
@@ -12,7 +18,7 @@
 
         Udgiver: <input /><br>
 
-        Udgivelsesdato: <input /><br>
+        Udgivelsesdato: <input type="date" /><br>
 
         Antal spillere: <input /><br>
 
@@ -25,6 +31,8 @@
         Antal kopier: <input /><br>
 
         Billede: <input /><br>
+
+        <button type="submit">Tilføj spil</button>
 
     </form>
 
