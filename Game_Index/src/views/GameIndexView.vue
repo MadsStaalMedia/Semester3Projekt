@@ -92,7 +92,7 @@
 
   let searchedGames = ref(sortedGames.value);
 
-  let displayedGames = ref(searchedGames.filter((game, index) => index < sortedGames.value * 3).filter((game, index) => index > sortedGames.value * 3 - 4));
+  let displayedGames = ref(searchedGames.value.filter((game, index) => index < sortedGames.value * 3).filter((game, index) => index > sortedGames.value * 3 - 4));
 
   const pageButtons = computed(() => {
     return gameList.value.length / 3
@@ -126,7 +126,7 @@
   function searchGames() {
     console.log(search.value);
 
-    searchedGames = sortedGames.filter()
+    searchedGames = sortedGames.filter((game) => search.value.filter.toLowerCase().split(" ").every((v) => game.name.toLowerCase().includes(v)));
   };
 
 </script>
