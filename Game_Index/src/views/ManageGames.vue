@@ -18,7 +18,7 @@
     const onSubmit = () => {
         console.log("submitted");
 
-        const res = fetch('https://svendborgbraetspilliste-default-rtdb.europe-west1.firebasedatabase.app/games.json', {
+        const res = fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json', {
             method: 'POST',
             headers:  {
                 'Content-Type': 'application/json',
@@ -61,8 +61,6 @@
         Genre: <input v-model="genre" /><br>
 
         Antal kopier: <input v-model="copies" /><br>
-
-        Billede: <input ref="img" type="file" accept="image/*" /><br>
 
         <button type="submit">Tilføj spil</button>
 
