@@ -1,86 +1,11 @@
 <script setup>
   import { computed, ref, watch } from 'vue';
 
-  const gameList = ref([
-    {
-        img: "/img/monopoly_pokemon.webp",
-        name: "B Spil 1",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "1952-5-3",
-        added: "2026-1-3",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/azul.webp",
-        name: "A Spil 2",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "1955-5-3",
-        added: "2022-1-1",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/rival_restaurants.webp",
-        name: "Spil 3",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "1955-5-2",
-        added: "2026-5-1",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/rival_restaurants.webp",
-        name: "Spil 4",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "1955-5-3",
-        added: "2026-6-1",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/rival_restaurants.webp",
-        name: "A Spil 5",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "1955-5-1",
-        added: "2021-1-1",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    },
-    {
-        img: "/img/rival_restaurants.webp",
-        name: "Spil 6",
-        desc: "et spil hvor du spiller",
-        publisher: "Spil Firma",
-        date: "1955-3-3",
-        added: "2026-8-1",
-        genre: "spillespil",
-        players: "2-4",
-        age: "+99",
-        complex: "mellem",
-        copies: "4",
-    }
-  ]);
+  const gameList = ref(fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json', {
+            method: 'GET',
+            
+        })
+      );
 
   const activeGame = ref(null);
 
@@ -147,7 +72,7 @@
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img class="game_img" :src="game.img" />
+          <img class="game_img" src="/Game_Index/public/img/monopoly_pokemon.webp" />
           <h3 class="game_title">{{ game.name }}</h3>
           <p class="game_desc">{{ game.desc }}</p>
         </div>
