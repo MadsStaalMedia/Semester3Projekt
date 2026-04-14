@@ -1,17 +1,17 @@
 <script setup>
   import { computed, ref } from 'vue';
-  
+
   const gameList = ref([]);
 
   const getGames = async () => {
     try {
-      const response = await fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games');
+      const response = await fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json');
 
       const resGames = await response.json();
 
       gameList.value = resGames;
 
-      console.log(resGames);
+      console.log(gameList.value);
 
     } catch(error) {
 
