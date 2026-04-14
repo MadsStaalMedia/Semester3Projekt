@@ -1,11 +1,21 @@
 <script setup>
   import { computed, ref, watch } from 'vue';
+  
+  const gameList = ref({});
 
-  const gameList = ref(fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json', {
-            method: 'GET',
-            
-        })
-      );
+  const getGames = async () => {
+    try {
+      const response = await fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games');
+
+      const resGames = await response.json();
+
+      gameList.value = resGames;
+
+      console.log(resGames)
+    } catch(error) {
+      console.error(error);
+    }
+  };
 
   const activeGame = ref(null);
 
@@ -72,7 +82,7 @@
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img class="game_img" src="/Game_Index/public/img/monopoly_pokemon.webp" />
+          <img class="game_img" src="" />
           <h3 class="game_title">{{ game.name }}</h3>
           <p class="game_desc">{{ game.desc }}</p>
         </div>
