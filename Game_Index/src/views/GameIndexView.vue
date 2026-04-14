@@ -1,7 +1,7 @@
 <script setup>
-  import { computed, ref, watch } from 'vue';
+  import { computed, ref } from 'vue';
   
-  const gameList = ref({});
+  const gameList = ref([]);
 
   const getGames = async () => {
     try {
@@ -11,17 +11,22 @@
 
       gameList.value = resGames;
 
-      console.log(resGames)
+      console.log(resGames);
+
     } catch(error) {
+
       console.error(error);
+
     }
   };
+
+  getGames();
 
   const activeGame = ref(null);
 
   const gamePage = ref(1);
 
-  let search = ref("")
+  let search = ref("");
 
   let displayedGames = ref(gameList.value.sort((a, b) => a.name > b.name).filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
 
@@ -82,7 +87,7 @@
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img class="game_img" src="" />
+          <img class="game_img" src="/img/monopoly_pokemon.webp" />
           <h3 class="game_title">{{ game.name }}</h3>
           <p class="game_desc">{{ game.desc }}</p>
         </div>
