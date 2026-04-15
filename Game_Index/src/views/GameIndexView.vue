@@ -13,7 +13,7 @@
 
       console.log(resGames);
 
-      console.log(gameList.value);
+      console.table(gameList.value);
 
     } catch(error) {
 
@@ -85,7 +85,7 @@
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
-      <div class="game" v-for="game in displayedGames" :key="game.name">
+      <div class="game" v-for="game in gameList" :key="game.name">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
