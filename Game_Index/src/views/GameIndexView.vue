@@ -9,7 +9,7 @@
 
       const resGames = await response.json();
 
-      gameList.value = resGames;
+      gameList.value = Object.entries(resGames).map(([key, value]) => ({id: key, ...value}));
 
       console.log(resGames);
 
@@ -33,7 +33,7 @@
   let displayedGames = ref(gameList.value.sort((a, b) => a.name > b.name).filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
 
   const pageButtons = computed(() => {
-    return gameList.value.length / 3
+    return displayedGames.value.length / 3
   });
 
   function toggleGameInfo(game) {
