@@ -11,6 +11,8 @@
 
       gameList.value = resGames;
 
+      console.log(resGames);
+
       console.log(gameList.value);
 
     } catch(error) {
