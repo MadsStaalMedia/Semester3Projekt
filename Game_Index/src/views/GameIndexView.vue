@@ -13,7 +13,7 @@
 
       console.log(resGames);
 
-      console.table(gameList.value);
+      console.log(gameList.value);
 
     } catch(error) {
 
@@ -28,8 +28,6 @@
 
   let search = ref("");
 
-  let displayedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
-
   function toggleGameInfo(game) {
     if (activeGame.value === game) {
       activeGame.value = null; 
@@ -39,15 +37,15 @@
   };
 
   function sortAlphabet() {
-    gameList = gameList.value.sort((a, b) => a.name > b.name);
+    gameList.value = gameList.value.sort((a, b) => a.name > b.name);
   };
 
   function sortRelease() {
-    gameList = gameList.value.sort((a, b) => a.date > b.date);
+    gameList.value = gameList.value.sort((a, b) => a.date > b.date);
   };
 
   function sortAdded() {
-    gameList = gameList.value.sort((a, b) => a.added > b.added);
+    gameList.value = gameList.value.sort((a, b) => a.added > b.added);
   };
 
   function searchGames() {
@@ -74,7 +72,7 @@
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
-      <div class="game" v-for="game in displayedGames" :key="game.name">
+      <div class="game" v-for="game in gameList" :key="game.name">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
