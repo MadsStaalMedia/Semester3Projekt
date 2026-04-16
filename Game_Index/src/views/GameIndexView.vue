@@ -1,7 +1,8 @@
 <script setup>
   import { computed, ref } from 'vue';
 
-  let gameList = ref([]);
+  const gameList = ref([]);
+  const originalGameList = ref([])
 
   const getGames = async () => {
     try {
@@ -10,6 +11,8 @@
       const resGames = await response.json();
 
       gameList.value = Object.entries(resGames).map(([key, value]) => ({id: key, ...value}));
+
+      originalGameList.value = Object.entries(resGames).map(([key, value]) => ({id: key, ...value}));
 
       console.log(resGames);
 
@@ -26,7 +29,7 @@
 
   const activeGame = ref(null);
 
-  let search = ref("");
+  const search = ref('');
 
   function toggleGameInfo(game) {
     if (activeGame.value === game) {
@@ -37,20 +40,22 @@
   };
 
   function sortAlphabet() {
-    gameList.value = gameList.value.sort((a, b) => a.name > b.name);
+    gameList.value = [...gameList.value].sort((a, b) => b.name.localeCompare(a.name))
   };
 
   function sortRelease() {
-    gameList.value = gameList.value.sort((a, b) => a.date > b.date);
+    gameList.value = [...gameList.value].sort((a, b) => b.name.localeCompare(a.date))
   };
 
   function sortAdded() {
-    gameList.value = gameList.value.sort((a, b) => a.added > b.added);
+    gameList.value = [...gameList.value].sort((a, b) => b.name.localeCompare(a.added))
   };
 
-  function searchGames() {
-    console.log(search.value);
-  };
+  const searchGames = computed(() => {
+  return gameList.value.filter(game =>
+    game.name.toLowerCase().includes(search.value.toLowerCase())
+  )
+})
 
 </script>
 
@@ -64,7 +69,6 @@
     <div>
 
       <input type="search" name="search" v-model="search" placeholder="Søg">
-      <button @click="searchGames">Søg</button>
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
@@ -72,7 +76,7 @@
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
-      <div class="game" v-for="game in gameList" :key="game.name">
+      <div class="game" v-for="game in searchGames" :key="game.name">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
