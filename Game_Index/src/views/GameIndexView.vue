@@ -1,7 +1,7 @@
 <script setup>
   import { computed, ref } from 'vue';
 
-  const gameList = ref([]);
+  let gameList = ref([]);
 
   const getGames = async () => {
     try {
@@ -26,15 +26,9 @@
 
   const activeGame = ref(null);
 
-  const gamePage = ref(1);
-
   let search = ref("");
 
-  let displayedGames = ref(gameList.value.sort((a, b) => a.name > b.name).filter((game, index) => index < gamePage.value * 3).filter((game, index) => index > gamePage.value * 3 - 4));
-
-  const pageButtons = computed(() => {
-    return displayedGames.value.length / 3
-  });
+  let displayedGames = ref(gameList.value.sort((a, b) => a.name > b.name));
 
   function toggleGameInfo(game) {
     if (activeGame.value === game) {
@@ -44,21 +38,16 @@
     }
   };
 
-  function changePage(number) {
-    displayedGames.value = gameList.value.filter((game, index) => index < number * 3 && index > number * 3 - 4);
-    console.log(number);
-  };
-
   function sortAlphabet() {
-    sortedGames = displayedGames.value.sort((a, b) => a.name > b.name);
+    gameList = gameList.value.sort((a, b) => a.name > b.name);
   };
 
   function sortRelease() {
-    sortedGames = displayedGames.value.sort((a, b) => a.date > b.date);
+    gameList = gameList.value.sort((a, b) => a.date > b.date);
   };
 
   function sortAdded() {
-    sortedGames = displayedGames.value.sort((a, b) => a.added > b.added);
+    gameList = gameList.value.sort((a, b) => a.added > b.added);
   };
 
   function searchGames() {
@@ -85,7 +74,7 @@
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
-      <div class="game" v-for="game in gameList" :key="game.name">
+      <div class="game" v-for="game in displayedGames" :key="game.name">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
@@ -109,12 +98,6 @@
 
       </div>
 
-    </div>
-
-    <div v-for="number in pageButtons">
-      <button @click="changePage(number)">
-        {{ number }}
-      </button>
     </div>
 
   </main>
