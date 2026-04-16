@@ -1,28 +1,20 @@
 <script setup>
-  import { computed, ref } from 'vue';
+  import { computed, ref, onMounted } from 'vue';
+  import { getDatabase, ref as dbRef, get as dbget } from 'firebase/database'
 
   const gameList = ref([]);
 
-  const getGames = async () => {
-    try {
-      const response = await fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json');
+  onMounted(() => {
+    const db = getDatabase()
+    const snapshot = await get(dbRef(db, 'your/db/path'))
 
-      const resGames = await response.json();
-
-      gameList.value = Object.entries(resGames).map(([key, value]) => ({id: key, ...value}));
-
-      console.log(resGames);
-
-      console.table(gameList.value);
-
-    } catch(error) {
-
-      console.error(error);
-
+    if (snapshot.exists()) {
+      items.value = Object.entries(snapshot.val()).map(([key, value]) => ({
+        id: key,
+        ...value
+      }))
     }
-  };
-
-  getGames();
+  })
 
   const activeGame = ref(null);
 
@@ -85,7 +77,7 @@
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
-      <div class="game" v-for="game in gameList" :key="game.name">
+      <div class="game" v-for="game in gameList" :key="game.id">
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
