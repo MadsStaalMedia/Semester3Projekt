@@ -1,6 +1,21 @@
 <script setup>
 
     import { ref } from 'vue';
+    import { initializeApp } from 'firebase/app';
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+    const firebaseConfig = {
+    apiKey: "AIzaSyCi1nDBj6-FyDQNCpsXOhGYHPAI9pAoXL0",
+    authDomain: "svenborgbraetspilindex.firebaseapp.com",
+    databaseURL: "https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "svenborgbraetspilindex",
+    storageBucket: "svenborgbraetspilindex.firebasestorage.app",
+    messagingSenderId: "111101857952",
+    appId: "1:111101857952:web:1b30edaf0a327e6346b9c5"
+
+    };
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
 
     const name = ref('');
     const desc = ref('');
@@ -10,17 +25,33 @@
     const players = ref('');
     const age = ref('');
     const complex = ref('');
-    const copies = ref('');
-    const img = ref(null);
+    const imgFile = ref(null);
+    const imgPreview = ref(null);
+
+    function onFileChange(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        imgFile.value = file;
+        imgPreview.value = URL.createObjectURL(file);
+    }
 
     
 
-    const onSubmit = () => {
-        console.log("submitted");
+    const onSubmit = async () => {
+        let imgUrl = null;
 
-        const res = fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json', {
+        if (imgFile.value) {
+            const fileRef = storageRef(storage, `games/${Date.now()}_${imgFile.value.name}`);
+            await uploadBytes(fileRef, imgFile.value);
+            imgUrl = await getDownloadURL(fileRef);
+        } else {
+            alert('Vælg venligst et billede.');
+            return;
+        }
+
+        await fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json', {
             method: 'POST',
-            headers:  {
+            headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -28,13 +59,15 @@
                 desc: desc.value,
                 publisher: publisher.value,
                 date: date.value,
-                added: new Date,
+                added: new Date().toISOString(),
                 genre: genre.value,
                 players: players.value,
                 age: age.value,
                 complex: complex.value,
                 copies: copies.value,
+                imgUrl,
             }),
+
         });
 
     };
@@ -62,6 +95,10 @@
         Genre: <input v-model="genre" /><br>
 
         Antal kopier: <input v-model="copies" /><br>
+
+        <input type="file" accept="image/*" required @change="onFileChange" /><br>
+
+        <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
 
         <button type="submit">Tilføj spil</button>
 

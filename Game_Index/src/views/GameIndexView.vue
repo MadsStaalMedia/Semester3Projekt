@@ -80,7 +80,7 @@
 
         <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img class="game_img" src="/img/monopoly_pokemon.webp" />
+          <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" />
           <h3 class="game_title">{{ game.name }}</h3>
           <p class="game_desc">{{ game.desc }}</p>
         </div>
