@@ -21,10 +21,9 @@
     const desc = ref('');
     const publisher = ref('');
     const date = ref('');
-    const genre = ref('');
     const players = ref('');
     const age = ref('');
-    const complex = ref('');
+    const copies = ref('');
     const imgFile = ref(null);
     const imgPreview = ref(null);
 
@@ -59,11 +58,9 @@
                 desc: desc.value,
                 publisher: publisher.value,
                 date: date.value,
-                added: new Date().toISOString(),
-                genre: genre.value,
+                added: new Date().toString(),
                 players: players.value,
                 age: age.value,
-                complex: complex.value,
                 copies: copies.value,
                 imgUrl,
             }),
@@ -84,17 +81,13 @@
 
         Udgiver: <input v-model="publisher" /><br>
 
-        Udgivelsesdato: <input type="date" v-model="date" /><br>
+        Udgivelsesår: <input type="number" v-model="date" /><br>
 
         Antal spillere: <input v-model="players" /><br>
 
         Anbefalet alder: <input v-model="age" /><br>
-        
-        Kompleksitet: <input v-model="complex" /><br>
 
-        Genre: <input v-model="genre" /><br>
-
-        Antal kopier: <input v-model="copies" /><br>
+        Antal kopier: <input type="number" v-model="copies" /><br>
 
         <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
