@@ -5,13 +5,13 @@
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
     const firebaseConfig = {
-    apiKey: "AIzaSyCi1nDBj6-FyDQNCpsXOhGYHPAI9pAoXL0",
-    authDomain: "svenborgbraetspilindex.firebaseapp.com",
-    databaseURL: "https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "svenborgbraetspilindex",
-    storageBucket: "svenborgbraetspilindex.firebasestorage.app",
-    messagingSenderId: "111101857952",
-    appId: "1:111101857952:web:1b30edaf0a327e6346b9c5"
+        apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+        authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+        databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+        projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+        storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+        appId: import.meta.env.VITE_FIREBASE_APP_ID,
 
     };
     const app = initializeApp(firebaseConfig);
