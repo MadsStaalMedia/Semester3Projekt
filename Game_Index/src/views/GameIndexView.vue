@@ -62,38 +62,40 @@
 <template>
   <main>
 
-    <div class="gameindex">
-      <h1>This is a game index page</h1>
-    </div>
-
     <div>
+      <h1>This is a game index page</h1>
 
       <input type="search" name="search" v-model="search" placeholder="Søg">
 
-      <select :value="1">
-        <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
-        <option @click="sortRelease()" :value="2">Udgivelsesår</option>
-        <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
-      </select>
+        <select :value="1">
+          <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
+          <option @click="sortRelease()" :value="2">Udgivelsesår</option>
+          <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
+        </select>
+    
 
-      <div class="game" v-for="game in searchGames" :key="game.name">
+      <div class="gameindex">
 
-        <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 200px; max-height: 200px; object-fit: contain;" />
-          <h3 class="game_title">{{ game.name }}</h3>
-          <p class="game_desc">{{ game.desc }}</p>
-        </div>
+        <div class="game" v-for="game in searchGames" :key="game.name">
 
-        <transition name="accordion">
-          <div v-if="activeGame === game" class="game_info">
-            <ul class="game_info-text">
-              <li>Udgiver: {{ game.publisher }}</li>
-              <li>Udgivelsesår: {{ game.date }}</li>
-              <li>Antal spillere: {{ game.players }}</li>
-              <li>Anbefalet alder: {{ game.age }}</li>
-            </ul>
+          <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
+            <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
+            <h3 class="game_title">{{ game.name }}</h3>
+            <p class="game_desc">{{ game.desc }}</p>
           </div>
-        </transition>
+
+          <transition name="accordion">
+            <div v-if="activeGame === game" class="game_info">
+              <ul class="game_info-text">
+                <li>Udgiver: {{ game.publisher }}</li>
+                <li>Udgivelsesår: {{ game.date }}</li>
+                <li>Antal spillere: {{ game.players }}</li>
+                <li>Anbefalet alder: {{ game.age }}</li>
+              </ul>
+            </div>
+          </transition>
+
+        </div>
 
       </div>
 
@@ -106,8 +108,16 @@
 
 <style scoped>
 
+  .gameindex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5%;
+    width: 90vw;
+  }
+
   .game {
-    width: 20vw;
+    width: 20%;
   }
 
 </style>
