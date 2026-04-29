@@ -73,14 +73,11 @@
         desc.value = '';
         publisher.value = '';
         date.value = '';
-        genre.value = '';
         players.value = '';
         age.value = '';
-        complex.value = '';
         copies.value = '';
         imgFile.value = null;
         imgPreview.value = null;
-        fileInput.value.value = '';
 
         submitted.value = true;
 
