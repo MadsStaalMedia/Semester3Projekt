@@ -34,6 +34,8 @@
         imgPreview.value = URL.createObjectURL(file);
     }
 
+    const submitted = ref(false);
+
     
 
     const onSubmit = async () => {
@@ -67,11 +69,28 @@
 
         });
 
+        name.value = '';
+        desc.value = '';
+        publisher.value = '';
+        date.value = '';
+        genre.value = '';
+        players.value = '';
+        age.value = '';
+        complex.value = '';
+        copies.value = '';
+        imgFile.value = null;
+        imgPreview.value = null;
+        fileInput.value.value = '';
+
+        submitted.value = true;
+
     };
 
 </script>
 
 <template>
+
+    <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
 
     <form @submit.prevent="onSubmit">
 

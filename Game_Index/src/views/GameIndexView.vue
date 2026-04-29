@@ -78,7 +78,6 @@
 
       <div class="game" v-for="game in searchGames" :key="game.name">
 
-        <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
           <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 200px; max-height: 200px; object-fit: contain;" />
           <h3 class="game_title">{{ game.name }}</h3>
@@ -103,3 +102,12 @@
   </main>
 
 </template>
+
+
+<style scoped>
+
+  .game {
+    width: 20vw;
+  }
+
+</style>
