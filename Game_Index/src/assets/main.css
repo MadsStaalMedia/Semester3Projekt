@@ -11,10 +11,12 @@ button {
   background-color: #b0803b;
   border: none;
   color: #ffffff;
+  font-weight: 500;
   font-family:
     Poppins, 
     sans-serif;
   padding: 8px 12px 8px 12px;
+  margin: 8px;
   font-size: 1rem;
   border-radius: 8px;
   text-align: center;
@@ -24,10 +26,12 @@ select {
   background-color: #b0803b;
   border: none;
   color: #ffffff;
+  font-weight: 500;
   font-family:
     Poppins, 
     sans-serif;
   padding: 8px 12px 8px 12px;
+  margin: 8px;
   font-size: 1rem;
   border-radius: 8px;
   text-align: center;
