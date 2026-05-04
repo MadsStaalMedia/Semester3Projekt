@@ -59,7 +59,7 @@
     )
   });
 
-  const paginatedGames = computed(() => {
+  const pagedGames = computed(() => {
       const start = (currentPage.value - 1) * gamesPerPage.value;
       const end = start + gamesPerPage.value;
       return searchGames.value.slice(start, end);
@@ -92,7 +92,7 @@
 
     <div class="gameindex">
 
-      <div class="game" v-for="game in paginatedGames" :key="game.name">
+      <div class="game" v-for="game in pagedGames" :key="game.name">
 
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
 
@@ -122,7 +122,7 @@
 
     </div>
 
-    <div class="pagination">
+    <div class="pageButtons">
         <button :disabled="currentPage === 1" @click="currentPage--">Forrige</button>
         <span>Side {{ currentPage }} af {{ totalPages }}</span>
         <button :disabled="currentPage === totalPages" @click="currentPage++">Næste</button>
@@ -190,6 +190,12 @@
 
   .game_info {
     font-size: 0.8rem;
+  }
+
+  .pageButtons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
   }
 
 </style>
