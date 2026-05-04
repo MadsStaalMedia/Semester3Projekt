@@ -37,14 +37,10 @@
         )
     );
 
-    function selectGame(game) {
-        selectedId.value = game.id;
-        search.value = game.name;
-    }
-
-    function clearSelection() {
-        selectedId.value = null;
-        search.value = '';
+    function selectGame(selected) {
+        selectedId.value = selected.id;
+        search.value = selected.name;
+        game.value = { ...selected };
     }
 
 </script>
@@ -84,8 +80,6 @@
         <div v-else>
             Vælg et spil for at redigerer...
         </div>
-
-        <button v-if="selectedId" @click="clearSelection">Vælg andet spil</button>
 
     </div>
 
