@@ -2,7 +2,9 @@
   import { computed, ref } from 'vue';
 
   const gameList = ref([]);
-  const originalGameList = ref([])
+  const originalGameList = ref([]);
+  const currentPage = ref(1);
+  const gamesPerPage = ref(10);
 
   const getGames = async () => {
     try {
@@ -52,10 +54,20 @@
   };
 
   const searchGames = computed(() => {
-  return gameList.value.filter(game =>
-    game.name.toLowerCase().includes(search.value.toLowerCase())
-  )
-})
+    return gameList.value.filter(game =>
+      game.name.toLowerCase().includes(search.value.toLowerCase())
+    )
+  });
+
+  const paginatedGames = computed(() => {
+      const start = (currentPage.value - 1) * gamesPerPage.value;
+      const end = start + gamesPerPage.value;
+      return searchGames.value.slice(start, end);
+  });
+
+  const totalPages = computed(() => 
+      Math.ceil(gameList.value.length / gamesPerPage.value)
+  );
 
 </script>
 
@@ -80,7 +92,7 @@
 
     <div class="gameindex">
 
-      <div class="game" v-for="game in searchGames" :key="game.name">
+      <div class="game" v-for="game in paginatedGames" :key="game.name">
 
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
 
@@ -110,6 +122,12 @@
 
     </div>
 
+    <div class="pagination">
+        <button :disabled="currentPage === 1" @click="currentPage--">Forrige</button>
+        <span>Side {{ currentPage }} af {{ totalPages }}</span>
+        <button :disabled="currentPage === totalPages" @click="currentPage++">Næste</button>
+    </div>
+
   </main>
 
 </template>
@@ -132,9 +150,9 @@
   .gameindex {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100vw;
   }
 
@@ -149,8 +167,12 @@
     background-color: #323232;
     width: 20vw;
     padding: 5px;
-    margin: 10px 2vw;
+    margin: 10px 1vw;
     
+  }
+
+  .game_title {
+    text-align: center;
   }
 
   .game_img {
@@ -163,6 +185,11 @@
 
   .game_desc {
     font-size: 1rem;
+    height: 3rem;
+  }
+
+  .game_info {
+    font-size: 0.8rem;
   }
 
 </style>

@@ -69,15 +69,7 @@
 
         });
 
-        name.value = '';
-        desc.value = '';
-        publisher.value = '';
-        date.value = '';
-        players.value = '';
-        age.value = '';
-        copies.value = '';
-        imgFile.value = null;
-        imgPreview.value = null;
+        
 
         submitted.value = true;
 
