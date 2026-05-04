@@ -100,7 +100,7 @@
 
           <div class="game_img">
 
-            <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
+            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
 
           </div>
 

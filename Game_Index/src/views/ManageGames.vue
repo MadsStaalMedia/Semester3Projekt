@@ -69,7 +69,15 @@
 
         });
 
-        
+        name.value = '';
+        desc.value = '';
+        publisher.value = '';
+        date.value = '';
+        players.value = '';
+        age.value = '';
+        copies.value = '';
+        imgFile.value = null;
+        imgPreview.value = null;
 
         submitted.value = true;
 
@@ -106,3 +114,11 @@
     </form>
 
 </template>
+
+<style scoped>
+
+    form {
+        margin-left: 2vw;
+    }
+
+</style>
