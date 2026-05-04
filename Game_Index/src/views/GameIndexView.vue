@@ -65,13 +65,17 @@
     
     <h1>This is a game index page</h1>
 
-    <input type="search" name="search" v-model="search" placeholder="Søg">
+    <div class="filterDiv">
+
+      <input type="search" name="search" v-model="search" placeholder="Søg">
 
       <select :value="1">
         <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
         <option @click="sortRelease()" :value="2">Udgivelsesår</option>
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
+
+    </div>
     
 
     <div class="gameindex">
@@ -79,7 +83,13 @@
       <div class="game" v-for="game in searchGames" :key="game.name">
 
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
+
+          <div class="game_img">
+
+            <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
+
+          </div>
+
           <h3 class="game_title">{{ game.name }}</h3>
           <p class="game_desc">{{ game.desc }}</p>
         </div>
@@ -120,8 +130,22 @@
     width: 100vw;
   }
 
+  .filterDiv {
+    margin: 10px 2vw;
+  }
+
   .game {
-    width: 100%;
+    width: 20vw;
+    margin: 10px 2vw;
+    
+  }
+
+  .game_img {
+    width: 20vw;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
 
 </style>
