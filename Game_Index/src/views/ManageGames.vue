@@ -3,6 +3,7 @@
     import { ref } from 'vue';
     import { initializeApp } from 'firebase/app';
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import GameEdit from '@/components/gameEdit.vue';
 
     const firebaseConfig = {
         apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -87,31 +88,37 @@
 
 <template>
 
-    <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
+    <main>
 
-    <form @submit.prevent="onSubmit">
+        <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
 
-        Titel: <input v-model="name" /><br>
+        <form @submit.prevent="onSubmit">
 
-        Kort beskrivelse: <input v-model="desc" /><br>
+            Titel: <input v-model="name" /><br>
 
-        Udgiver: <input v-model="publisher" /><br>
+            Kort beskrivelse: <input v-model="desc" /><br>
 
-        Udgivelsesår: <input type="number" v-model="date" /><br>
+            Udgiver: <input v-model="publisher" /><br>
 
-        Antal spillere: <input v-model="players" /><br>
+            Udgivelsesår: <input type="number" v-model="date" /><br>
 
-        Anbefalet alder: <input v-model="age" /><br>
+            Antal spillere: <input v-model="players" /><br>
 
-        Antal kopier: <input type="number" v-model="copies" /><br>
+            Anbefalet alder: <input v-model="age" /><br>
 
-        <input type="file" accept="image/*" required @change="onFileChange" /><br>
+            Antal kopier: <input type="number" v-model="copies" /><br>
 
-        <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
+            <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
-        <button type="submit">Tilføj spil</button>
+            <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
 
-    </form>
+            <button type="submit">Tilføj spil</button>
+
+        </form>
+
+        <GameEdit />
+
+    </main>
 
 </template>
 
