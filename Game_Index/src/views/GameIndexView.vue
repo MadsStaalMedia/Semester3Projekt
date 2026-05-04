@@ -63,7 +63,7 @@
   <main>
 
     
-    <h1>This is a game index page</h1>
+    <h1>Svenborg Brætspilscafe spil oversigt</h1>
 
     <div class="filterDiv">
 
@@ -84,13 +84,14 @@
 
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
 
+          <h3 class="game_title">{{ game.name }}</h3>
+
           <div class="game_img">
 
             <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
 
           </div>
 
-          <h3 class="game_title">{{ game.name }}</h3>
           <p class="game_desc">{{ game.desc }}</p>
         </div>
 
@@ -125,6 +126,7 @@
     padding: 8px 12px 8px 12px;
     font-size: 1rem;
     border-radius: 8px;
+    border: none;
   }
 
   .gameindex {
@@ -141,7 +143,12 @@
   }
 
   .game {
+    border: 1px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #323232;
     width: 20vw;
+    padding: 5px;
     margin: 10px 2vw;
     
   }
@@ -151,7 +158,11 @@
     height: 400px;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: flex-start;
+  }
+
+  .game_desc {
+    font-size: 1rem;
   }
 
 </style>
