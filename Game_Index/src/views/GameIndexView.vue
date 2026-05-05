@@ -99,7 +99,7 @@
 
           <div class="game_img">
 
-            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
+            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
 
           </div>
 
@@ -175,11 +175,12 @@
   }
 
   .game_img {
-    width: 20vw;
+    width: 100%;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    margin-bottom: 1em;
   }
 
   .game_desc {
@@ -195,6 +196,27 @@
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+  }
+
+   @media (max-width: 1600px) {
+    .game {
+      width: 30vw;
+    }
+
+  }
+
+  @media (max-width: 1024px) {
+    .game {
+      width: 40vw;
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    .game {
+      width: 80vw;
+    }
+
   }
 
 </style>
