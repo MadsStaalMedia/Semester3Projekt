@@ -1,12 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
 
+    <h2>Test Header</h2>
+
     <div class="wrapper">
+
+      
       
     </div>
   </header>
@@ -68,11 +71,17 @@ nav a:first-of-type {
 
 @media (min-width: 1024px) {
   header {
+    box-sizing: border-box;
+    background-color: #222222;
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-    position: fixed;
+    position: sticky;
     top: 0;
+    min-height: 100px;
+    max-height: 200px;
+    width: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    
   }
 
   .logo {
