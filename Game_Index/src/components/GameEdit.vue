@@ -77,9 +77,6 @@
             <button @click="saveEdit">Gem ændringer</button>
             <button @click="deleteGame" style="color: red;">Slet spil</button>
         </div>
-        <div v-else>
-            Vælg et spil for at redigerer...
-        </div>
 
     </div>
 
