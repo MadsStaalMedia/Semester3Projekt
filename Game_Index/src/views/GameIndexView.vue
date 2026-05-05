@@ -4,7 +4,7 @@
   const gameList = ref([]);
   const originalGameList = ref([]);
   const currentPage = ref(1);
-  const gamesPerPage = ref(10);
+  const gamesPerPage = ref(8);
 
   const getGames = async () => {
     try {
