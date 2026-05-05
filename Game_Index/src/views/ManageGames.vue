@@ -3,7 +3,7 @@
     import { ref } from 'vue';
     import { initializeApp } from 'firebase/app';
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import GameEdit from '@/components/gameEdit.vue';
+import GameEdit from '@/components/GameEdit.vue';
 
     const firebaseConfig = {
         apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
