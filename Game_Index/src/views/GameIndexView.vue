@@ -2,7 +2,9 @@
   import { computed, ref } from 'vue';
 
   const gameList = ref([]);
-  const originalGameList = ref([])
+  const originalGameList = ref([]);
+  const currentPage = ref(1);
+  const gamesPerPage = ref(8);
 
   const getGames = async () => {
     try {
@@ -52,21 +54,30 @@
   };
 
   const searchGames = computed(() => {
-  return gameList.value.filter(game =>
-    game.name.toLowerCase().includes(search.value.toLowerCase())
-  )
-})
+    return gameList.value.filter(game =>
+      game.name.toLowerCase().includes(search.value.toLowerCase())
+    )
+  });
+
+  const pagedGames = computed(() => {
+      const start = (currentPage.value - 1) * gamesPerPage.value;
+      const end = start + gamesPerPage.value;
+      return searchGames.value.slice(start, end);
+  });
+
+  const totalPages = computed(() => 
+      Math.ceil(gameList.value.length / gamesPerPage.value)
+  );
 
 </script>
 
 <template>
   <main>
 
-    <div class="gameindex">
-      <h1>This is a game index page</h1>
-    </div>
+    
+    <h1>Svenborg Brætspilscafe spil oversigt</h1>
 
-    <div>
+    <div class="filterDiv">
 
       <input type="search" name="search" v-model="search" placeholder="Søg">
 
@@ -76,12 +87,22 @@
         <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
       </select>
 
-      <div class="game" v-for="game in searchGames" :key="game.name">
+    </div>
+    
 
-        <!--<img src="img/catan.jpg" aspect-ratio="1" alt="test">-->
+    <div class="gameindex">
+
+      <div class="game" v-for="game in pagedGames" :key="game.name">
+
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <img v-if="game.imgUrl" :src="game.imgUrl" :alt="game.name" style="max-width: 200px; max-height: 200px; object-fit: contain;" />
           <h3 class="game_title">{{ game.name }}</h3>
+
+          <div class="game_img">
+
+            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 20vw; max-height: 400px; object-fit: contain;" />
+
+          </div>
+
           <p class="game_desc">{{ game.desc }}</p>
         </div>
 
@@ -100,6 +121,80 @@
 
     </div>
 
+    <div class="pageButtons">
+        <button :disabled="currentPage === 1" @click="currentPage--">Forrige</button>
+        <span>Side {{ currentPage }} af {{ totalPages }}</span>
+        <button :disabled="currentPage === totalPages" @click="currentPage++">Næste</button>
+    </div>
+
   </main>
 
 </template>
+
+
+<style scoped>
+
+  main {
+    margin: 0;
+    padding: 0;
+  }
+
+  input {
+    padding: 8px 12px 8px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+  }
+
+  .gameindex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100vw;
+  }
+
+  .filterDiv {
+    margin: 10px 2vw;
+  }
+
+  .game {
+    border: 1px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #323232;
+    width: 20vw;
+    padding: 5px;
+    margin: 10px 1vw;
+    
+  }
+
+  .game_title {
+    text-align: center;
+  }
+
+  .game_img {
+    width: 20vw;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .game_desc {
+    font-size: 1rem;
+    height: 3rem;
+  }
+
+  .game_info {
+    font-size: 0.8rem;
+  }
+
+  .pageButtons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+</style>

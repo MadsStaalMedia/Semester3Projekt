@@ -7,6 +7,57 @@
   font-weight: normal;
 }
 
+button {
+  background-color: #b0803b;
+  border: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-family:
+    Poppins, 
+    sans-serif;
+  padding: 8px 12px 8px 12px;
+  margin: 8px;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+select {
+  background-color: #b0803b;
+  border: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-family:
+    Poppins, 
+    sans-serif;
+  padding: 8px 12px 8px 12px;
+  margin: 8px;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+h1 {
+  margin-left: 2vw;
+  font-family: Acme, sans-serif;
+  font-weight: 600;
+}
+
+h2 {
+  font-family: Acme, sans-serif;
+  color: #b0803b;
+  font-weight: 600;
+}
+
+h3 {
+  font-family: Acme, sans-serif;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
 a,
 .green {
   text-decoration: none;

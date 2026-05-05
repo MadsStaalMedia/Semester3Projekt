@@ -3,6 +3,7 @@
     import { ref } from 'vue';
     import { initializeApp } from 'firebase/app';
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import GameEdit from '@/components/GameEdit.vue';
 
     const firebaseConfig = {
         apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -33,6 +34,8 @@
         imgFile.value = file;
         imgPreview.value = URL.createObjectURL(file);
     }
+
+    const submitted = ref(false);
 
     
 
@@ -67,34 +70,62 @@
 
         });
 
+        name.value = '';
+        desc.value = '';
+        publisher.value = '';
+        date.value = '';
+        players.value = '';
+        age.value = '';
+        copies.value = '';
+        imgFile.value = null;
+        imgPreview.value = null;
+
+        submitted.value = true;
+
     };
 
 </script>
 
 <template>
 
-    <form @submit.prevent="onSubmit">
+    <main>
 
-        Titel: <input v-model="name" /><br>
+        <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
 
-        Kort beskrivelse: <input v-model="desc" /><br>
+        <form @submit.prevent="onSubmit">
 
-        Udgiver: <input v-model="publisher" /><br>
+            Titel: <input v-model="name" /><br>
 
-        Udgivelsesår: <input type="number" v-model="date" /><br>
+            Kort beskrivelse: <input v-model="desc" /><br>
 
-        Antal spillere: <input v-model="players" /><br>
+            Udgiver: <input v-model="publisher" /><br>
 
-        Anbefalet alder: <input v-model="age" /><br>
+            Udgivelsesår: <input type="number" v-model="date" /><br>
 
-        Antal kopier: <input type="number" v-model="copies" /><br>
+            Antal spillere: <input v-model="players" /><br>
 
-        <input type="file" accept="image/*" required @change="onFileChange" /><br>
+            Anbefalet alder: <input v-model="age" /><br>
 
-        <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
+            Antal kopier: <input type="number" v-model="copies" /><br>
 
-        <button type="submit">Tilføj spil</button>
+            <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
-    </form>
+            <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
+
+            <button type="submit">Tilføj spil</button>
+
+        </form>
+
+        <GameEdit />
+
+    </main>
 
 </template>
+
+<style scoped>
+
+    form {
+        margin-left: 2vw;
+    }
+
+</style>
