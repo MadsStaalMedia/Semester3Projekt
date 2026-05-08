@@ -99,17 +99,16 @@
 
           <div class="game_img">
 
-            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; width: auto; max-height: 100%; height: auto; object-fit: contain;" />
 
           </div>
 
-          <p class="game_desc">{{ game.desc }}</p>
         </div>
 
         <transition name="accordion">
           <div v-if="activeGame === game" class="game_info">
+            <p class="game_desc">{{ game.desc }}</p>
             <ul class="game_info-text">
-              <li>Udgiver: {{ game.publisher }}</li>
               <li>Udgivelsesår: {{ game.date }}</li>
               <li>Antal spillere: {{ game.players }}</li>
               <li>Anbefalet alder: {{ game.age }}</li>
@@ -185,7 +184,6 @@
 
   .game_desc {
     font-size: 1rem;
-    height: 3rem;
   }
 
   .game_info {
