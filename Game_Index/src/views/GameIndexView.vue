@@ -167,12 +167,20 @@
     padding: 5px;
     margin: 10px 1vw;
     transition: background-color 0.5s;
+
+    h3 {
+      transition: text-shadow 0.5s;
+    }
     
   }
 
   .game:hover {
     background-color: #494949;
     cursor: pointer;
+
+    h3 {
+      text-shadow: 1px 1px 1px black;
+    }
   }
 
   .game_title {
