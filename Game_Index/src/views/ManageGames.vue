@@ -20,11 +20,9 @@ import GameEdit from '@/components/GameEdit.vue';
 
     const name = ref('');
     const desc = ref('');
-    const publisher = ref('');
     const date = ref('');
     const players = ref('');
     const age = ref('');
-    const copies = ref('');
     const imgFile = ref(null);
     const imgPreview = ref(null);
 
@@ -59,12 +57,10 @@ import GameEdit from '@/components/GameEdit.vue';
             body: JSON.stringify({
                 name: name.value,
                 desc: desc.value,
-                publisher: publisher.value,
                 date: date.value,
                 added: new Date().toString(),
                 players: players.value,
                 age: age.value,
-                copies: copies.value,
                 imgUrl,
             }),
 
@@ -72,11 +68,9 @@ import GameEdit from '@/components/GameEdit.vue';
 
         name.value = '';
         desc.value = '';
-        publisher.value = '';
         date.value = '';
         players.value = '';
         age.value = '';
-        copies.value = '';
         imgFile.value = null;
         imgPreview.value = null;
 
@@ -96,21 +90,17 @@ import GameEdit from '@/components/GameEdit.vue';
 
             Titel: <input v-model="name" /><br>
 
-            Kort beskrivelse: <input v-model="desc" /><br>
-
-            Udgiver: <input v-model="publisher" /><br>
-
             Udgivelsesår: <input type="number" v-model="date" /><br>
 
             Antal spillere: <input v-model="players" /><br>
 
             Anbefalet alder: <input v-model="age" /><br>
 
-            Antal kopier: <input type="number" v-model="copies" /><br>
-
             <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
             <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
+
+            Kort beskrivelse: <input v-model="desc" /><br>
 
             <button type="submit">Tilføj spil</button>
 

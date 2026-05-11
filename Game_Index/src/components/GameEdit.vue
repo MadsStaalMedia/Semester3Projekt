@@ -65,14 +65,11 @@
         <div v-if="selectedId" class="gameSelect">
             <h2>Rediger spil</h2>
             Titel: <input v-model="game.name" /><br>
-            Kort beskrivelse: <input v-model="game.desc" /><br>
-            Udgiver: <input v-model="game.publisher" /><br>
             Udgivelsesdato: <input type="number" v-model="game.date" /><br>
             Antal spillere: <input v-model="game.players" /><br>
             Anbefalet alder: <input v-model="game.age" /><br>
             Kompleksitet: <input v-model="game.complex" /><br>
-            Genre: <input v-model="game.genre" /><br>
-            Antal kopier: <input v-model="game.copies" /><br>
+            Kort beskrivelse: <input v-model="game.desc" /><br>
 
             <button @click="saveEdit">Gem ændringer</button>
             <button @click="deleteGame" style="color: red;">Slet spil</button>
