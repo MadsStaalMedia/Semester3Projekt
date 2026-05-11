@@ -22,6 +22,7 @@ button {
   text-align: center;
 }
 
+
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -41,6 +42,10 @@ select {
   font-size: 1rem;
   border-radius: 8px;
   text-align: center;
+}
+
+select:hover {
+  cursor: pointer;
 }
 
 h1 {
