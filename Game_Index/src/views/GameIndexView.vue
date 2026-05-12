@@ -5,6 +5,7 @@
   const originalGameList = ref([]);
   const currentPage = ref(1);
   const gamesPerPage = ref(8);
+  const sortBy = ref('alphabet');
 
   const getGames = async () => {
     try {
@@ -19,8 +20,6 @@
       console.log(resGames);
 
       console.log(gameList.value);
-
-      sortAlphabet();
 
     } catch(error) {
 
@@ -43,31 +42,24 @@
     }
   };
 
-  function sortAlphabet() {
-    gameList.value = [...gameList.value].sort((a, b) => a.name.localeCompare(b.name));
-    currentPage.value = 1;
-  };
-
-  function sortRelease() {
-    gameList.value = [...gameList.value].sort((a, b) => {
-      const dateDifference = b.date - a.date;
-      if (dateDifference !== 0) return dateDifference;
-      return a.name.localeCompare(b.name);  
-    });
-    currentPage.value = 1;
-  };
-
-  function sortAdded() {
-    gameList.value = [...gameList.value].sort((a, b) => {
-      const dateDifference = new Date(b.added) - new Date(a.added);
-      if (dateDifference !== 0) return dateDifference;
-      return a.name.localeCompare(b.name);
-    });
-    currentPage.value = 1;
-  };
+  const sortedGames = computed(() => {
+    const list = [...gameList.value];
+    if (sortBy.value === 'alphabet') {
+        return list.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy.value === 'release') {
+        return list.sort((a, b) => {
+            const dateDiff = b.date - a.date;
+            if (dateDiff !== 0) return dateDiff;
+            return a.name.localeCompare(b.name);
+        });
+    } else if (sortBy.value === 'added') {
+        return list.sort((a, b) => new Date(b.added) - new Date(a.added));
+    }
+    return list;
+  });
 
   const searchGames = computed(() => {
-    return gameList.value.filter(game =>
+    return sortedGames.value.filter(game =>
       game.name.toLowerCase().includes(search.value.toLowerCase())
     )
   });
@@ -94,10 +86,10 @@
 
       <input type="search" name="search" v-model="search" placeholder="Søg">
 
-      <select :value="1">
-        <option @click="sortAlphabet()" :value="1">Alfabetisk</option>
-        <option @click="sortRelease()" :value="2">Udgivelsesår</option>
-        <option @click="sortAdded()" :value="3">Sidst Tilføjet</option>
+      <select v-model="sortBy">
+        <option value="alphabet">Alfabetisk</option>
+        <option value="release">Udgivelsesår</option>
+        <option value="added">Sidst Tilføjet</option>
       </select>
 
     </div>
