@@ -41,6 +41,7 @@
         selectedId.value = selected.id;
         search.value = selected.name;
         game.value = { ...selected };
+        search.value = '';
     }
 
 </script>
@@ -51,7 +52,7 @@
 
         <input v-model="search" placeholder="Søg efter spil..." />
 
-        <div v-if="search && !selectedId" class="searchResults">
+        <div v-if="search" class="searchResults">
             <div
                 v-for="game in filteredGames"
                 :key="game.id"
@@ -63,7 +64,7 @@
         </div>
 
         <div v-if="selectedId" class="gameSelect">
-            <h2>Rediger spil</h2>
+            <h2>Rediger spillet</h2>
             Titel: <input v-model="game.name" /><br>
             Udgivelsesdato: <input type="number" v-model="game.date" /><br>
             Antal spillere: <input v-model="game.players" /><br>

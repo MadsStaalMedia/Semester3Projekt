@@ -87,6 +87,7 @@
         <h1>Velkommen til spil manageren</h1>
 
         <div>
+            <h2>Tilføj spil til listen</h2>
 
             <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
 
