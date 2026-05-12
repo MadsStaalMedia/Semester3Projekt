@@ -81,10 +81,6 @@
 
 <style scoped>
 
-.gameEdit {
-    margin-left: 2vw;
-}
-
 .searchResults {
     font-size: 1rem;
     background-color: #323232;

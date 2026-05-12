@@ -122,16 +122,23 @@ import GameEdit from '@/components/GameEdit.vue';
 <style scoped>
 
     form {
-        margin-left: 2vw;
+        margin-left: 1vw;
     }
 
     main {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        width: 100vw;
 
         h1 {
             width: 100vw;
+        }
+
+        div {
+            padding: 1rem;
+            border: 1px solid #323232;
+            width: 100%;
         }
     }
 
