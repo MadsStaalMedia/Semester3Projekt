@@ -3,7 +3,7 @@
     import { ref } from 'vue';
     import { initializeApp } from 'firebase/app';
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import GameEdit from '@/components/GameEdit.vue';
+    import GameEdit from '@/components/GameEdit.vue';
 
     const firebaseConfig = {
         apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -128,7 +128,7 @@ import GameEdit from '@/components/GameEdit.vue';
     main {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-between;
+        justify-content: space-around;
         width: 100vw;
 
         h1 {
@@ -139,6 +139,7 @@ import GameEdit from '@/components/GameEdit.vue';
             padding: 1rem;
             border: 1px solid #323232;
             width: 100%;
+            max-width: 900px;
         }
     }
 
