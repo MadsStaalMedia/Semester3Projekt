@@ -156,6 +156,24 @@
     border: none;
   }
 
+  .accordion-enter-active,
+  .accordion-leave-active {
+    transition: max-height 0.2s ease, opacity 0.2s ease;
+    overflow: hidden;
+  }
+
+  .accordion-enter-from,
+  .accordion-leave-to {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .accordion-enter-to,
+  .accordion-leave-from {
+    max-height: 500px;
+    opacity: 1;
+  }
+
   .gameindex {
     display: flex;
     flex-direction: row;
