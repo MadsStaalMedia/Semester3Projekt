@@ -45,6 +45,7 @@
 
   function sortAlphabet() {
     gameList.value = [...gameList.value].sort((a, b) => a.name.localeCompare(b.name));
+    currentPage.value = 1;
   };
 
   function sortRelease() {
@@ -53,6 +54,7 @@
       if (dateDifference !== 0) return dateDifference;
       return a.name.localeCompare(b.name);  
     });
+    currentPage.value = 1;
   };
 
   function sortAdded() {
@@ -61,6 +63,7 @@
       if (dateDifference !== 0) return dateDifference;
       return a.name.localeCompare(b.name);
     });
+    currentPage.value = 1;
   };
 
   const searchGames = computed(() => {
