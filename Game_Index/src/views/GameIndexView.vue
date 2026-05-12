@@ -206,9 +206,11 @@
   
 
   .pageButtons {
+    width: 100vw;
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 20px;
   }
 
    @media (max-width: 1600px) {
