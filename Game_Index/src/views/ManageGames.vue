@@ -84,28 +84,35 @@ import GameEdit from '@/components/GameEdit.vue';
 
     <main>
 
-        <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
+        <h1>Velkommen til spil manageren</h1>
 
-        <form @submit.prevent="onSubmit">
+        <div>
 
-            Titel: <input v-model="name" /><br>
+            <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
 
-            Udgivelsesår: <input type="number" v-model="date" /><br>
+            <form @submit.prevent="onSubmit">
 
-            Antal spillere: <input v-model="players" /><br>
+                Titel: <input v-model="name" /><br>
 
-            Anbefalet alder: <input v-model="age" /><br>
+                Udgivelsesår: <input type="number" v-model="date" /><br>
 
-            <input type="file" accept="image/*" required @change="onFileChange" /><br>
+                Antal spillere: <input v-model="players" /><br>
 
-            <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
+                Anbefalet alder: <input v-model="age" /><br>
 
-            Kort beskrivelse: <input v-model="desc" /><br>
+                <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
-            <button type="submit">Tilføj spil</button>
+                <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
 
-        </form>
+                Kort beskrivelse (valgfrit): <input v-model="desc" /><br>
 
+                <button type="submit">Tilføj spil</button>
+
+            </form>
+
+
+        </div>
+        
         <GameEdit />
 
     </main>
@@ -116,6 +123,16 @@ import GameEdit from '@/components/GameEdit.vue';
 
     form {
         margin-left: 2vw;
+    }
+
+    main {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+
+        h1 {
+            width: 100vw;
+        }
     }
 
 </style>
