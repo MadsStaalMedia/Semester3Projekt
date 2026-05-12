@@ -1,11 +1,15 @@
 <script setup>
-  import { computed, ref } from 'vue';
+  import { computed, ref, watch } from 'vue';
 
   const gameList = ref([]);
   const originalGameList = ref([]);
   const currentPage = ref(1);
   const gamesPerPage = ref(8);
   const sortBy = ref('alphabet');
+
+  watch(sortBy, () => {
+    currentPage.value = 1;
+  });
 
   const getGames = async () => {
     try {
@@ -65,13 +69,13 @@
   });
 
   const pagedGames = computed(() => {
-      const start = (currentPage.value - 1) * gamesPerPage.value;
-      const end = start + gamesPerPage.value;
-      return searchGames.value.slice(start, end);
+    const start = (currentPage.value - 1) * gamesPerPage.value;
+    const end = start + gamesPerPage.value;
+    return searchGames.value.slice(start, end);
   });
 
   const totalPages = computed(() => 
-      Math.ceil(gameList.value.length / gamesPerPage.value)
+    Math.ceil(searchGames.value.length / gamesPerPage.value)
   );
 
 </script>
@@ -97,7 +101,7 @@
 
     <div class="gameindex">
 
-      <div class="game" v-for="game in pagedGames" :key="game.name">
+      <div class="game" v-for="game in pagedGames" :key="game.id">
 
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
           <h3 class="game_title">{{ game.name }}</h3>
