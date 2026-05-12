@@ -108,7 +108,7 @@
 
           <div class="game_img">
 
-            <div v-if="!game.loaded" class="img-placeholder"></div>
+            <div v-if="!game.loaded" class="img_loading"></div>
 
             <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; width: auto; max-height: 100%; height: auto; object-fit: contain;" :style="{ display: game.loaded ? 'block' : 'none' }" @load="game.loaded = true" @error="e => retryImage(e, game)" />
 
@@ -207,7 +207,7 @@
     margin-bottom: 1em;
   }
 
-  .img-placeholder {
+  .img_loading {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
