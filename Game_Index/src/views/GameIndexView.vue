@@ -203,6 +203,7 @@
   .game_info {
     font-size: 0.8rem;
   }
+  
 
   .pageButtons {
     display: flex;
