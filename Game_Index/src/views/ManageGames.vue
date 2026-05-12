@@ -125,6 +125,14 @@
         margin-left: 1vw;
     }
 
+    input {
+        margin-bottom: 10px;
+        padding: 8px 12px 8px 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+    }
+
     main {
         display: flex;
         flex-flow: row wrap;

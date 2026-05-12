@@ -81,6 +81,13 @@
 
 <style scoped>
 
+input {
+    padding: 8px 12px 8px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+}
+
 .searchResults {
     font-size: 1rem;
     background-color: #323232;
