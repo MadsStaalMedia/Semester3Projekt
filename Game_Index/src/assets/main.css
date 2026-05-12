@@ -55,6 +55,14 @@ select:hover {
   cursor: pointer;
 }
 
+option {
+  background-color: #b0803b;
+}
+
+option:hover {
+  background-color: #b4843f;
+}
+
 h1 {
   margin-left: 2vw;
   font-family: Acme, sans-serif;

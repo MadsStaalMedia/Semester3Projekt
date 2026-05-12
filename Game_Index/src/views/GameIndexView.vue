@@ -20,6 +20,8 @@
 
       console.log(gameList.value);
 
+      sortAlphabet();
+
     } catch(error) {
 
       console.error(error);
@@ -42,15 +44,23 @@
   };
 
   function sortAlphabet() {
-    gameList.value = [...gameList.value].sort((a, b) => b.name.localeCompare(a.name))
+    gameList.value = [...gameList.value].sort((a, b) => a.name.localeCompare(b.name));
   };
 
   function sortRelease() {
-    gameList.value = [...gameList.value].sort((a, b) => b.name.localeCompare(a.date))
+    gameList.value = [...gameList.value].sort((a, b) => {
+      const dateDifference = b.date - a.date;
+      if (dateDifference !== 0) return dateDifference;
+      return a.name.localeCompare(b.name);  
+    });
   };
 
   function sortAdded() {
-    gameList.value = [...gameList.value].sort((a, b) => b.name.localeCompare(a.added))
+    gameList.value = [...gameList.value].sort((a, b) => {
+      const dateDifference = new Date(b.added) - new Date(a.added);
+      if (dateDifference !== 0) return dateDifference;
+      return a.name.localeCompare(b.name);
+    });
   };
 
   const searchGames = computed(() => {
