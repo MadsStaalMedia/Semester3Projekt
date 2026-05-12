@@ -108,7 +108,9 @@
 
           <div class="game_img">
 
-            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; width: auto; max-height: 100%; height: auto; object-fit: contain;" />
+            <div v-if="!game.loaded" class="img-placeholder"></div>
+
+            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; width: auto; max-height: 100%; height: auto; object-fit: contain;" :style="{ display: game.loaded ? 'block' : 'none' }" @load="game.loaded = true" @error="e => retryImage(e, game)" />
 
           </div>
 
@@ -203,6 +205,20 @@
     justify-content: center;
     align-items: flex-start;
     margin-bottom: 1em;
+  }
+
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+
+  @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
   }
 
   .game_desc {
