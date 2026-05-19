@@ -50,6 +50,8 @@
 
     <div class="gameEdit">
 
+        <h2>Rediger spil på listen</h2>
+
         <input v-model="search" placeholder="Søg efter spil..." />
 
         <div v-if="search" class="searchResults">
@@ -65,12 +67,11 @@
 
         <div v-if="selectedId" class="gameSelect">
             <h2>Rediger spillet</h2>
-            Titel: <input v-model="game.name" /><br>
-            Udgivelsesdato: <input type="number" v-model="game.date" /><br>
-            Antal spillere: <input v-model="game.players" /><br>
-            Anbefalet alder: <input v-model="game.age" /><br>
-            Kompleksitet: <input v-model="game.complex" /><br>
-            Kort beskrivelse: <input v-model="game.desc" /><br>
+            <label for="gameName">Titel:</label><br> <input name="gameName" v-model="game.name" /><br>
+            <label for="gameDate">Udgivelsesdato:</label><br> <input name="gameDate" type="number" v-model="game.date" /><br>
+            <label for="gamePlayer">Antal spillere:</label><br> <input name="gamePlayers" v-model="game.players" /><br>
+            <label for="gameAge">Anbefalet alder:</label><br> <input name="gameAge" v-model="game.age" /><br>
+            <label for="gameDesc">Kort beskrivelse:</label><br> <textarea name="gameDesc" v-model="game.desc"></textarea><br>
 
             <button @click="saveEdit">Gem ændringer</button>
             <button @click="deleteGame" style="color: red;">Slet spil</button>
@@ -82,17 +83,42 @@
 
 <style scoped>
 
-input {
-    padding: 8px 12px 8px 12px;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: none;
-}
+    input {
+        padding: 8px 12px 8px 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+        min-width: 50%;
+        font-family:
+            Poppins, 
+            sans-serif;
+    }
 
-.searchResults {
-    font-size: 1rem;
-    background-color: #323232;
-}
+    textarea {
+        margin-bottom: 10px;
+        padding: 8px 12px 8px 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+        min-width: 50%;
+        font-family:
+            Poppins, 
+            sans-serif;
+    }
+
+    .searchResults {
+        font-size: 1rem;
+        background-color: #323232;
+    }
+
+    textarea {
+        margin-bottom: 10px;
+        padding: 8px 12px 8px 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+        min-width: 50%;
+    }
 
 
 </style>

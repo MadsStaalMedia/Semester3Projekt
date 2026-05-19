@@ -93,19 +93,19 @@
 
             <form @submit.prevent="onSubmit">
 
-                <label for="name">Titel:</label><br> <input type="text" name="name" v-model="name" /><br>
+                <label for="name">Titel:</label><br> <input type="text" name="name" v-model="name" placeholder="Titel" /><br>
 
-                <label for="date">Udgivelsesår:</label><br> <input type="number" name="date" v-model="date" /><br>
+                <label for="date">Udgivelsesår:</label><br> <input type="number" name="date" v-model="date" placeholder="Udgivelsesår" /><br>
 
-                <label for="players">Antal spillere:</label><br> <input type="text" name="players" v-model="players" /><br>
+                <label for="players">Antal spillere:</label><br> <input type="text" name="players" v-model="players" placeholder="Antal spillere (f.eks. 2-5)" /><br>
 
-                <label for="age">Anbefalet alder:</label><br> <input type="text" name="age" v-model="age" /><br>
+                <label for="age">Anbefalet alder:</label><br> <input type="text" name="age" v-model="age" placeholder="Anbefaldet alder (f.eks +7)" /><br>
 
                 <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
                 <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
 
-                <label for="desc">Kort beskrivelse (valgfrit):</label><br> <input type="text" name="desc" v-model="desc" /><br>
+                <label for="desc">Kort beskrivelse (valgfrit):</label><br> <textarea name="desc" v-model="desc" placeholder="Kort beskrivelse"></textarea><br>
 
                 <button type="submit">Tilføj spil</button>
 
@@ -132,6 +132,22 @@
         font-size: 1rem;
         border-radius: 8px;
         border: none;
+        min-width: 50%;
+        font-family:
+            Poppins, 
+            sans-serif;
+    }
+
+    textarea {
+        margin-bottom: 10px;
+        padding: 8px 12px 8px 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+        min-width: 50%;
+        font-family:
+            Poppins, 
+            sans-serif;
     }
 
     main {
