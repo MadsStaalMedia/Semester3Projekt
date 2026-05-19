@@ -93,19 +93,19 @@
 
             <form @submit.prevent="onSubmit">
 
-                Titel: <input v-model="name" /><br>
+                <label for="name">Titel:</label><br> <input type="text" name="name" v-model="name" /><br>
 
-                Udgivelsesår: <input type="number" v-model="date" /><br>
+                <label for="date">Udgivelsesår:</label><br> <input type="number" name="date" v-model="date" /><br>
 
-                Antal spillere: <input v-model="players" /><br>
+                <label for="players">Antal spillere:</label><br> <input type="text" name="players" v-model="players" /><br>
 
-                Anbefalet alder: <input v-model="age" /><br>
+                <label for="age">Anbefalet alder:</label><br> <input type="text" name="age" v-model="age" /><br>
 
                 <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
                 <img v-if="imgPreview" :src="imgPreview" alt="Preview" style="max-width: 200px; margin: 8px 0;" /><br>
 
-                Kort beskrivelse (valgfrit): <input v-model="desc" /><br>
+                <label for="desc">Kort beskrivelse (valgfrit):</label><br> <input type="text" name="desc" v-model="desc" /><br>
 
                 <button type="submit">Tilføj spil</button>
 
