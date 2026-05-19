@@ -109,7 +109,7 @@
 
             <div v-if="!game.loaded" class="img_loading"></div>
 
-            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; width: auto; max-height: 100%; height: auto; object-fit: contain;" :style="{ display: game.loaded ? 'block' : 'none' }" @load="game.loaded = true" @error="e => retryImage(e, game)" />
+            <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 90%; width: auto; max-height: 90%; height: auto; object-fit: contain;" :style="{ display: game.loaded ? 'block' : 'none' }" @load="game.loaded = true" @error="e => retryImage(e, game)" />
 
           </div>
 
@@ -222,8 +222,7 @@
     height: 400px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    margin-bottom: 1em;
+    align-items: center;
   }
 
   .img_loading {
@@ -231,11 +230,11 @@
     height: 100%;
     background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
+    animation: waiting 1.5s infinite;
     border-radius: 4px;
   }
 
-  @keyframes shimmer {
+  @keyframes waiting {
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
   }
