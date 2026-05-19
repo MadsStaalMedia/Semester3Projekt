@@ -211,6 +211,12 @@
     h3 {
       text-shadow: 1px 1px 1px black;
     }
+
+    .game_img {
+      img {
+        rotate: 10deg;
+      }
+    }
   }
 
   .game_title {
@@ -223,6 +229,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    img {
+      transition: rotate 0.5s;
+    }
   }
 
   .img_loading {

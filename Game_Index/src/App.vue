@@ -80,8 +80,9 @@ nav a:first-of-type {
     min-height: 100px;
     max-height: 200px;
     width: 100vw;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    box-shadow: #000000 0px 2px 19px -2px;
     
+    z-index: 99;
   }
 
   .logo {
