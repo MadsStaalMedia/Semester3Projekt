@@ -104,7 +104,6 @@
       <div class="game" v-for="game in pagedGames" :key="game.id">
 
         <div class="game_imgAndTitle" v-on:click="toggleGameInfo(game)">
-          <h3 class="game_title">{{ game.name }}</h3>
 
           <div class="game_img">
 
@@ -113,6 +112,8 @@
             <img v-if="game.imgUrl" :src="game.imgUrl" alt="Billedet blev ikke fundet" style="max-width: 100%; width: auto; max-height: 100%; height: auto; object-fit: contain;" :style="{ display: game.loaded ? 'block' : 'none' }" @load="game.loaded = true" @error="e => retryImage(e, game)" />
 
           </div>
+
+          <h3 class="game_title">{{ game.name }}</h3>
 
         </div>
 
@@ -245,6 +246,10 @@
 
   .game_info {
     font-size: 0.8rem;
+  }
+
+  .game_info-text {
+    margin-left: 1rem;
   }
   
 
