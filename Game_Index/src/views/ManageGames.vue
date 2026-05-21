@@ -97,9 +97,15 @@
 
     const username = ref('');
     const password = ref('');
+    const loginError = ref('');
 
     async function login() {
-        await signInWithEmailAndPassword(auth, username.value, password.value);
+        loginError.value = '';
+        try {
+            await signInWithEmailAndPassword(auth, username.value, password.value);
+        } catch (error) {
+            loginError.value = 'Forkert email eller adgangskode.';
+    }
     }
 
 </script>
@@ -113,6 +119,7 @@
         <div class="login" v-if="!isLoggedIn">
             <input v-model="username" type="username" placeholder="Bruger" /><br>
             <input v-model="password" type="password" placeholder="Adgangskode" /><br>
+            <p v-if="loginError" style="color: red;">{{ loginError }}</p><br v-if="loginError">
             <button @click="login(password)">Log ind</button>
 
         </div>
