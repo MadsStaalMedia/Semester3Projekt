@@ -124,10 +124,10 @@
               <li>Udgivelsesår: {{ game.date }}</li>
               <li>Antal spillere: {{ game.players }}</li>
               <li>Anbefalet alder: {{ game.age }}</li>
-              <li>Spilletid: {{ game.time }}</li>
+              <li>Spilletid: {{ game.time }} minutter</li>
               <li>Kompleksitet {{ game.complex }}/5</li>
             </ul>
-            <div class="game_tags">{{ game.tags }}</div>
+            <div class="game_tags">Nøgleord: {{ game.tags }}</div>
           </div>
         </transition>
 
@@ -265,7 +265,9 @@
   }
 
   .game_tags {
-    font-size: 0.8rem;
+    margin-top: 1em;
+    font-size: 0.7rem;
+    color: #dddddd;
   }
   
 
