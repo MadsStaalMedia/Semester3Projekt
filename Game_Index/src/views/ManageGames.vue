@@ -120,7 +120,7 @@
             <input v-model="username" type="username" placeholder="Bruger" /><br>
             <input v-model="password" type="password" placeholder="Adgangskode" /><br>
             <p v-if="loginError" style="color: red;">{{ loginError }}</p><br v-if="loginError">
-            <button @click="login(password)">Log ind</button>
+            <button @click="login()">Log ind</button>
 
         </div>
 
