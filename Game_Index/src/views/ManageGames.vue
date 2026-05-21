@@ -3,6 +3,7 @@
     import { ref } from 'vue';
     import { initializeApp } from 'firebase/app';
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
     import GameEdit from '@/components/GameEdit.vue';
 
     const firebaseConfig = {
@@ -17,6 +18,13 @@
     };
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
+
+    const auth = getAuth();
+    const isLoggedIn = ref(false);
+
+    onAuthStateChanged(auth, (user) => {
+        isLoggedIn.value = !!user;
+    });
 
     const name = ref('');
     const desc = ref('');
@@ -87,6 +95,13 @@
 
     };
 
+    const username = ref('');
+    const password = ref('');
+
+    async function login() {
+        await signInWithEmailAndPassword(auth, username.value, password.value);
+    }
+
 </script>
 
 <template>
@@ -95,7 +110,16 @@
 
         <h1>Velkommen til spil manageren</h1>
 
-        <div>
+        <div class="login" v-if="!isLoggedIn">
+            <input v-model="username" type="username" placeholder="Bruger" /><br>
+            <input v-model="password" type="password" placeholder="Adgangskode" /><br>
+            <button @click="login(password)">Log ind</button>
+
+        </div>
+
+
+        
+        <div v-else>
             <h2>Tilføj spil til listen</h2>
 
             <p v-if="submitted" style="color: green;">Spillet blev tilføjet!</p>
@@ -128,9 +152,9 @@
 
 
         </div>
+            
+        <GameEdit v-if="isLoggedIn"/>
         
-        <GameEdit />
-
     </main>
 
 </template>
@@ -181,6 +205,13 @@
             width: 100%;
             max-width: 900px;
         }
+    }
+
+    .login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
 </style>
