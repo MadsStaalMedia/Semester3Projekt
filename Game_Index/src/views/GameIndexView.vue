@@ -2,7 +2,6 @@
   import { computed, ref, watch } from 'vue';
 
   const gameList = ref([]);
-  const originalGameList = ref([]);
   const currentPage = ref(1);
   const gamesPerPage = ref(8);
   const sortBy = ref('alphabet');
@@ -18,12 +17,6 @@
       const resGames = await response.json();
 
       gameList.value = Object.entries(resGames).map(([key, value]) => ({id: key, ...value}));
-
-      originalGameList.value = Object.entries(resGames).map(([key, value]) => ({id: key, ...value}));
-
-      console.log(resGames);
-
-      console.log(gameList.value);
 
     } catch(error) {
 
@@ -262,7 +255,7 @@
   }
 
   .game_info-text {
-    margin-left: 1rem;
+    list-style-type: none;
   }
 
   .game_tags {
