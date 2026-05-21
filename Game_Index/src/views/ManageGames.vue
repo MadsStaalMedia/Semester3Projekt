@@ -23,6 +23,8 @@
     const date = ref('');
     const players = ref('');
     const age = ref('');
+    const complex = ref('');
+    const tags = ref('');
     const imgFile = ref(null);
     const imgPreview = ref(null);
 
@@ -61,6 +63,8 @@
                 added: new Date().toString(),
                 players: players.value,
                 age: age.value,
+                complex: complex.value,
+                tags: tags.value,
                 imgUrl,
             }),
 
@@ -71,6 +75,8 @@
         date.value = '';
         players.value = '';
         age.value = '';
+        complex.value = '';
+        tags.value = '';
         imgFile.value = null;
         imgPreview.value = null;
 
@@ -100,6 +106,10 @@
                 <label for="players">Antal spillere:</label><br> <input type="text" name="players" v-model="players" placeholder="Antal spillere (f.eks. 2-5)" /><br>
 
                 <label for="age">Anbefalet alder:</label><br> <input type="text" name="age" v-model="age" placeholder="Anbefaldet alder (f.eks +7)" /><br>
+
+                <label for="complex">Kompleksitet</label><br> <input type="number" name="complex" v-model="complex" placeholder="Spillets kompleksitet på en skala fra 1 til 5" /><br>
+
+                <label for="tags">Nøgleord</label><br> <input type="text" name="tags" v-model="tags" placeholder="Nøgleord spillet kan findes med" /><br>
 
                 <input type="file" accept="image/*" required @change="onFileChange" /><br>
 
