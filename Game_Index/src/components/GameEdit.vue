@@ -67,10 +67,11 @@
 
         <div v-if="selectedId" class="gameSelect">
             <h2>Rediger spillet</h2>
-            <label for="gameName">Titel:</label><br> <input name="gameName" v-model="game.name" /><br>
+            <label for="gameName">Titel:</label><br> <input type="text" name="gameName" v-model="game.name" /><br>
             <label for="gameDate">Udgivelsesdato:</label><br> <input name="gameDate" type="number" v-model="game.date" /><br>
-            <label for="gamePlayer">Antal spillere:</label><br> <input name="gamePlayers" v-model="game.players" /><br>
-            <label for="gameAge">Anbefalet alder:</label><br> <input name="gameAge" v-model="game.age" /><br>
+            <label for="gamePlayer">Antal spillere:</label><br> <input type="text" name="gamePlayers" v-model="game.players" /><br>
+            <label for="gameAge">Anbefalet alder:</label><br> <input type="text" name="gameAge" v-model="game.age" /><br>
+            <label for="gameTime">Spilletid</label><br> <input type="text" name="gameTime" v-model="game.time" /><br>
             <label for="gameComplex">Kompleksitet</label><br> <input type="number" name="gameComplex" v-model="game.complex" placeholder="Spillets kompleksitet på en skala fra 1 til 5" /><br>
             <label for="gameTags">Nøgleord</label><br> <input type="text" name="gameTags" v-model="game.tags" placeholder="Nøgleord spillet kan findes med" /><br>
             <label for="gameDesc">Kort beskrivelse:</label><br> <textarea name="gameDesc" v-model="game.desc"></textarea><br>
