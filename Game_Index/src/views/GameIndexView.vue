@@ -64,7 +64,8 @@
 
   const searchGames = computed(() => {
     return sortedGames.value.filter(game =>
-      game.name.toLowerCase().includes(search.value.toLowerCase())
+      game.name.toLowerCase().includes(search.value.toLowerCase()) || 
+      game.tags.toLowerCase().includes(search.value.toLowerCase())
     )
   });
 
