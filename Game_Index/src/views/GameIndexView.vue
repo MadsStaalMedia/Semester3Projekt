@@ -113,7 +113,7 @@
 
           </div>
 
-          <h3 class="game_title">{{ game.name }}</h3>
+          <h2 class="game_title">{{ game.name }}</h2>
 
         </div>
 
