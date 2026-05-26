@@ -84,10 +84,18 @@
 
       <input type="search" name="search" v-model="search" placeholder="Søg">
 
-      <select v-model="sortBy">
+      <label for="sort">Sorter</label>
+      <select name="sort" v-model="sortBy">
         <option value="alphabet">Alfabetisk</option>
         <option value="release">Udgivelsesår</option>
         <option value="added">Sidst Tilføjet</option>
+      </select>
+
+      <label for="gameCount">Antal spil per side</label>
+      <select name="gameCount" v-model="gamesPerPage">
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="24">24</option>
       </select>
 
     </div>
@@ -152,6 +160,7 @@
     font-size: 1rem;
     border-radius: 8px;
     border: none;
+    margin-right: 1em;
   }
 
   .accordion-enter-active,

@@ -1,12 +1,15 @@
 <script setup>
 
     import { ref, onMounted, computed } from 'vue';
+    import { getStorage, ref as storageRef, deleteObject } from 'firebase/storage';
 
     const props = defineProps(['id']);
     const game = ref(null);
     const games = ref([]);
     const selectedId = ref(null);
     const search = ref('');
+    const storage = getStorage();
+    const gameDeleted = ref('');
 
     onMounted(async () => {
         const response = await fetch('https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games.json');
@@ -26,9 +29,21 @@
     async function deleteGame() {
         if (!confirm('Er du sikker på at du vil slette dette spil?')) return;
 
+        if (game.imgUrl) {
+            try {
+                const imageRef = storageRef(storage, game.imgUrl);
+                await deleteObject(imageRef);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
         await fetch(`https://svenborgbraetspilindex-default-rtdb.europe-west1.firebasedatabase.app/games/${props.id}.json`, {
             method: 'DELETE',
         });
+
+        selectedId.value = null
+        gameDeleted.value = 'Slette';
     }
 
     const filteredGames = computed(() =>
@@ -78,7 +93,9 @@
 
             <button @click="saveEdit">Gem ændringer</button>
             <button @click="deleteGame" style="color: red;">Slet spil</button>
+            
         </div>
+        <p v-if="gameDeleted">Spillet er slettet</p>
 
     </div>
 
